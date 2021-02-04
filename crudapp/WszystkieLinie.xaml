@@ -1,0 +1,49 @@
+﻿<Window x:Class="crudapp.WszystkieLinie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:crudapp"
+        mc:Ignorable="d"
+        Title="WszystkieLinie" Height="450" Width="1000" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="relacjeViewSource" d:DesignSource="{d:DesignInstance {x:Type local:relacje}, CreateList=True}"/>
+        <CollectionViewSource x:Key="rozkladJazdyKMEntitiesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:RozkladJazdyKMEntities}, CreateList=True}"/>
+        <CollectionViewSource x:Key="rozkladJazdyKMEntitiesrelacjeViewSource" Source="{Binding relacje, Source={StaticResource rozkladJazdyKMEntitiesViewSource}}"/>
+        <CollectionViewSource x:Key="rozkladJazdyKMEntitiesprzystankiViewSource" Source="{Binding przystanki, Source={StaticResource rozkladJazdyKMEntitiesViewSource}}"/>
+        <CollectionViewSource x:Key="rozkladJazdyKMEntitiesprzejazdyViewSource" Source="{Binding przejazdy, Source={StaticResource rozkladJazdyKMEntitiesViewSource}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource relacjeViewSource}">
+        <StackPanel Margin="10">
+            <TextBlock Text="Wszystkie linie, ich przejazdy" FontSize="15" FontWeight="DemiBold"/>
+            <TextBlock Text="oraz przystanki" FontSize="15" FontWeight="DemiBold"/>
+        </StackPanel>
+        
+        <Button Click="DodajLinieButton_Click" Content="DODAJ NOWĄ LINIĘ" HorizontalAlignment="Left" Margin="827,10,0,0" VerticalAlignment="Top" Width="136" Height="30"/>
+        <DataGrid x:Name="relacjeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rozkladJazdyKMEntitiesrelacjeViewSource}}" Margin="10,111,387.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idrelacjiColumn" Binding="{Binding idrelacji}" Header="IDrelacji" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="numerliniiColumn" Binding="{Binding numerlinii}" Header="NumerLinii" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idostatniegoprzystankuColumn" Binding="{Binding idostatniegoprzystanku}" Header="IDostatniegoprzystanku" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idpierwszegoprzystankuColumn" Binding="{Binding idpierwszegoprzystanku}" Header="IDpierwszegoprzystanku" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rozkladJazdyKMEntitiesprzystankiViewSource}}" Margin="671,111,9.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="IDprzystanku" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="Nazwa" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="przejazdyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rozkladJazdyKMEntitiesprzejazdyViewSource}}" Margin="411,111,327.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idprzejazduColumn" Binding="{Binding idprzejazdu}" Header="IDprzejazdu" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idprzystankuColumn1" Binding="{Binding idprzystanku}" Header="IDprzystanku" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idrelacjiColumn1" Binding="{Binding idrelacji}" Header="IDrelacji" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="DODAJ NOWY PRZYSTANEK" HorizontalAlignment="Left" Margin="630,11,0,0" VerticalAlignment="Top" Width="168" Height="29"/>
+        <Button Content="DODAJ NOWY PRZEJAZD" HorizontalAlignment="Left" Margin="446,11,0,0" VerticalAlignment="Top" Width="160" Height="29"/>
+        <Button Content="WYJDŹ" HorizontalAlignment="Left" Margin="870,57,0,0" VerticalAlignment="Top" Width="93" Height="25"/>
+    </Grid>
+
+</Window>

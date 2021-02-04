@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -98,6 +98,12 @@
     <Compile Include="dni.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DodajLinie.xaml.cs">
+      <DependentUpon>DodajLinie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InformacjeOLinii.xaml.cs">
+      <DependentUpon>InformacjeOLinii.xaml</DependentUpon>
+    </Compile>
     <Compile Include="przejazdy.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +116,17 @@
     <Compile Include="rodzajelinii.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="WszystkieLinie.xaml.cs">
+      <DependentUpon>WszystkieLinie.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DodajLinie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InformacjeOLinii.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -132,6 +149,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WszystkieLinie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -161,10 +182,13 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\crudapp.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\crudapp.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\czasyodjazdow.datasource" />
+    <None Include="Properties\DataSources\dni.datasource" />
     <None Include="Properties\DataSources\przejazdy.datasource" />
     <None Include="Properties\DataSources\przystanki.datasource" />
     <None Include="Properties\DataSources\relacje.datasource" />
     <None Include="Properties\DataSources\rodzajelinii.datasource" />
+    <None Include="Properties\DataSources\RozkladJazdyKMEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

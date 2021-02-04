@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
-        Title="Rozkład Jazdy Komunikacji Miejskiej - Baza danych" Height="600" Width="800" Loaded="Window_Loaded">
+        Title="Rozkład Jazdy Komunikacji Miejskiej RJKM - Baza danych" Height="600" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="relacjeViewSource" d:DesignSource="{d:DesignInstance {x:Type local:relacje}, CreateList=True}"/>
     </Window.Resources>
-
     <Border Padding="10">
         <StackPanel>
             <Grid Margin="0 10 0 0">
@@ -24,7 +23,16 @@
                 <Button Grid.Column="2" Content="USUŃ"/>
                 <Button Margin="10 0 0 0" Grid.Column="3" Content="AKTUALIZUJ"/>
             </Grid>
-            <TextBlock Padding="0 15 0 0" Text="Wybierz linię:" FontSize="20"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Padding="0 15 0 0" Text="Wybierz linię:" FontSize="20"/>
+                <Button Grid.Column="1" Click="ViewAllButton_Click" Margin="100 20 50 0" Content="Pokaż wszystkie linie" />
+            </Grid>
+            
+            
             <TextBlock Padding="0 5" Text="Tramwaje" FontSize="15"/>
 
             <Grid x:Name="tramwaje" DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="612">
@@ -50,80 +58,80 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Button  Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="1"/>
-                <Button  Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="2"/>
-                <Button  Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="3"/>
-                <Button  Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="4"/>
-                <Button  Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="5"/>
-                <Button  Grid.Column="6" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="6"/>
-                <Button  Grid.Column="7" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="7"/>
-                <Button  Grid.Column="8" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="8"/>
-                <Button  Grid.Column="9" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="9"/>
-                <Button  Grid.Column="10" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="10"/>
-                <Button  Grid.Column="11" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="11"/>
-                <Button  Grid.Column="12" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="12"/>
-                <Button  Grid.Column="13" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="13"/>
-                <Button  Grid.Column="14" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="14"/>
-                <Button  Grid.Column="15" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="15"/>
-                <Button  Grid.Column="16" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="22"/>
+                <Button x:Name="tram1" Click="ViewButton_Click" Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="1"/>
+                <Button x:Name="tram2" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="2"/>
+                <Button x:Name="tram3" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="3"/>
+                <Button x:Name="tram4" Click="ViewButton_Click" Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="4"/>
+                <Button x:Name="tram5" Click="ViewButton_Click" Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="5"/>
+                <Button x:Name="tram6" Click="ViewButton_Click" Grid.Column="6" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="6"/>
+                <Button x:Name="tram7" Click="ViewButton_Click" Grid.Column="7" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="7"/>
+                <Button x:Name="tram8" Click="ViewButton_Click" Grid.Column="8" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="8"/>
+                <Button x:Name="tram9" Click="ViewButton_Click" Grid.Column="9" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="9"/>
+                <Button x:Name="tram10" Grid.Column="10" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="10"/>
+                <Button x:Name="tram11" Grid.Column="11" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="11"/>
+                <Button x:Name="tram12" Grid.Column="12" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="12"/>
+                <Button x:Name="tram13" Grid.Column="13" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="13"/>
+                <Button x:Name="tram14" Grid.Column="14" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="14"/>
+                <Button x:Name="tram15" Grid.Column="15" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="15"/>
+                <Button x:Name="tram22" Grid.Column="16" Click="ViewButton_Click" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="22"/>
             </Grid>
             <TextBlock Padding="0 5" Text="Autobusy miejskie" FontSize="15"/>
             <WrapPanel x:Name="miejskie" Height="80" Margin="10 0">
 
-                <Button  Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="102"/>
-                <Button  Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="102"/>
-                <Button  Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="104"/>
-                <Button  Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="105"/>
-                <Button  Grid.Column="6" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="106"/>
-                <Button  Grid.Column="7" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="107"/>
-                <Button  Grid.Column="8" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="108"/>
-                <Button  Grid.Column="9" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="109"/>
-                <Button  Grid.Column="10" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="110"/>
-                <Button  Grid.Column="12" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="112"/>
-                <Button  Grid.Column="13" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="113"/>
-                <Button  Grid.Column="14" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="114"/>
-                <Button  Grid.Column="15" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="115"/>
-                <Button  Grid.Column="16" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="116"/>
-                <Button  Grid.Column="17" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="117"/>
-                <Button  Grid.Column="18" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="118"/>
-                <Button  Grid.Column="19" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="119"/>
-                <Button  Grid.Column="20" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="120"/>
-                <Button  Grid.Column="21" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="121"/>
-                <Button  Grid.Column="22" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="122"/>
-                <Button  Grid.Column="23" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="123"/>
-                <Button  Grid.Column="24" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="124"/>
-                <Button  Grid.Column="25" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="125"/>
-                <Button  Grid.Column="26" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="126"/>
-                <Button  Grid.Column="27" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="127"/>
-                <Button  Grid.Column="28" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="128"/>
-                <Button  Grid.Column="29" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="129"/>
-                <Button  Grid.Column="30" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="130"/>
-                <Button  Grid.Column="31" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="131"/>
+                <Button x:Name="miejskie2" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="102"/>
+                <Button x:Name="miejskie3" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="102"/>
+                <Button x:Name="miejskie4" Click="ViewButton_Click" Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="104"/>
+                <Button x:Name="miejskie5" Click="ViewButton_Click" Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="105"/>
+                <Button x:Name="miejskie6" Click="ViewButton_Click" Grid.Column="6" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="106"/>
+                <Button x:Name="miejskie7" Click="ViewButton_Click" Grid.Column="7" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="107"/>
+                <Button x:Name="miejskie8" Click="ViewButton_Click" Grid.Column="8" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="108"/>
+                <Button x:Name="miejskie9" Click="ViewButton_Click" Grid.Column="9" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="109"/>
+                <Button x:Name="miejskie10" Click="ViewButton_Click" Grid.Column="10" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="110"/>
+                <Button x:Name="miejskie12" Click="ViewButton_Click" Grid.Column="12" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="112"/>
+                <Button x:Name="miejskie13" Click="ViewButton_Click" Grid.Column="13" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="113"/>
+                <Button x:Name="miejskie14" Click="ViewButton_Click" Grid.Column="14" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="114"/>
+                <Button x:Name="miejskie15" Click="ViewButton_Click" Grid.Column="15" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="115"/>
+                <Button x:Name="miejskie16" Click="ViewButton_Click" Grid.Column="16" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="116"/>
+                <Button x:Name="miejskie17" Click="ViewButton_Click" Grid.Column="17" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="117"/>
+                <Button x:Name="miejskie18" Click="ViewButton_Click" Grid.Column="18" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="118"/>
+                <Button x:Name="miejskie19" Click="ViewButton_Click" Grid.Column="19" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="119"/>
+                <Button x:Name="miejskie20" Click="ViewButton_Click" Grid.Column="20" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="120"/>
+                <Button x:Name="miejskie21" Click="ViewButton_Click" Grid.Column="21" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="121"/>
+                <Button x:Name="miejskie22" Click="ViewButton_Click" Grid.Column="22" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="122"/>
+                <Button x:Name="miejskie23" Click="ViewButton_Click" Grid.Column="23" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="123"/>
+                <Button x:Name="miejskie24" Click="ViewButton_Click" Grid.Column="24" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="124"/>
+                <Button x:Name="miejskie25" Click="ViewButton_Click" Grid.Column="25" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="125"/>
+                <Button x:Name="miejskie26" Click="ViewButton_Click" Grid.Column="26" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="126"/>
+                <Button x:Name="miejskie27" Click="ViewButton_Click" Grid.Column="27" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="127"/>
+                <Button x:Name="miejskie28" Click="ViewButton_Click" Grid.Column="28" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="128"/>
+                <Button x:Name="miejskie29" Click="ViewButton_Click" Grid.Column="29" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="129"/>
+                <Button x:Name="miejskie30" Click="ViewButton_Click" Grid.Column="30" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="130"/>
+                <Button x:Name="miejskie31" Click="ViewButton_Click" Grid.Column="31" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="131"/>
             </WrapPanel>
 
             <TextBlock Padding="0 5" Text="Autobusy aglomeracyjne" FontSize="15"/>
             <WrapPanel x:Name="aglomeracyjne" Height="80" Margin="10 0">
-                <Button  Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="201"/>
-                <Button Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="202"/>
-                <Button Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="203"/>
-                <Button Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="204"/>
-                <Button Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="205"/>
-                <Button Grid.Column="6" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="206"/>
-                <Button Grid.Column="7" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="207"/>
-                <Button Grid.Column="8" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="208"/>
-                <Button Grid.Column="9" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="209"/>
-                <Button Grid.Column="10" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="210"/>
-                <Button Grid.Column="11" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="211"/>
-                <Button Grid.Column="12" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="212"/>
-                <Button Grid.Column="13" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="213"/>
-                <Button Grid.Column="14" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="214"/>
-                <Button Grid.Column="15" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="215"/>
-                <Button Grid.Column="16" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="216"/>
-                <Button Grid.Column="17" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="217"/>
-                <Button Grid.Column="18" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="218"/>
-                <Button Grid.Column="19" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="219"/>
-                <Button Grid.Column="20" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="220"/>
-                <Button Grid.Column="21" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="221"/>
+                <Button x:Name="aglomeracyjne1" Click="ViewButton_Click" Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="201"/>
+                <Button x:Name="aglomeracyjne2" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="202"/>
+                <Button x:Name="aglomeracyjne3" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="203"/>
+                <Button x:Name="aglomeracyjne4" Click="ViewButton_Click" Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="204"/>
+                <Button x:Name="aglomeracyjne5" Click="ViewButton_Click" Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="205"/>
+                <Button x:Name="aglomeracyjne6" Click="ViewButton_Click" Grid.Column="6" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="206"/>
+                <Button x:Name="aglomeracyjne7" Click="ViewButton_Click" Grid.Column="7" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="207"/>
+                <Button x:Name="aglomeracyjne8" Click="ViewButton_Click" Grid.Column="8" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="208"/>
+                <Button x:Name="aglomeracyjne9" Click="ViewButton_Click" Grid.Column="9" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="209"/>
+                <Button x:Name="aglomeracyjne10" Click="ViewButton_Click" Grid.Column="10" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="210"/>
+                <Button x:Name="aglomeracyjne11" Click="ViewButton_Click" Grid.Column="11" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="211"/>
+                <Button x:Name="aglomeracyjne12" Click="ViewButton_Click" Grid.Column="12" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="212"/>
+                <Button x:Name="aglomeracyjne13" Click="ViewButton_Click" Grid.Column="13" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="213"/>
+                <Button x:Name="aglomeracyjne14" Click="ViewButton_Click" Grid.Column="14" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="214"/>
+                <Button x:Name="aglomeracyjne15" Click="ViewButton_Click" Grid.Column="15" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="215"/>
+                <Button x:Name="aglomeracyjne16" Click="ViewButton_Click" Grid.Column="16" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="216"/>
+                <Button x:Name="aglomeracyjne17" Click="ViewButton_Click" Grid.Column="17" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="217"/>
+                <Button x:Name="aglomeracyjne18" Click="ViewButton_Click" Grid.Column="18" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="218"/>
+                <Button x:Name="aglomeracyjne19" Click="ViewButton_Click" Grid.Column="19" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="219"/>
+                <Button x:Name="aglomeracyjne20" Click="ViewButton_Click" Grid.Column="20" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="220"/>
+                <Button x:Name="aglomeracyjne21" Click="ViewButton_Click" Grid.Column="21" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="221"/>
             </WrapPanel>
             <Grid HorizontalAlignment="Stretch" Margin="10,0,0,0" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
@@ -144,9 +152,9 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Button Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="601"/>
-                            <Button Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="602"/>
-                            <Button Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="603"/>
+                            <Button x:Name="mNocne601" Click="ViewButton_Click" Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="601"/>
+                            <Button x:Name="mNocne602" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="602"/>
+                            <Button x:Name="mNocne603" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="603"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -163,9 +171,9 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Button Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="901"/>
-                            <Button Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="902"/>
-                            <Button Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="903"/>
+                            <Button x:Name="aNocne901" Click="ViewButton_Click" Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="901"/>
+                            <Button x:Name="aNocne902" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="902"/>
+                            <Button x:Name="aNocne903" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="903"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -189,16 +197,16 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
-                            <Button Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="501"/>
-                            <Button Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="502"/>
-                            <Button Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="503"/>
+                            <Button x:Name="przysMiejskie501" Click="ViewButton_Click" Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="501"/>
+                            <Button x:Name="przysMiejskie502" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="502"/>
+                            <Button x:Name="przysMiejskie503" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="503"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="1">
                     <StackPanel>
                         <TextBlock Padding="0 5" Text="Autobusy przyśpieszone aglomeracyjne" FontSize="15"/>
-                        <Grid x:Name="przysAglomeracyyjne" DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" >
+                        <Grid x:Name="przysAglomeracyjne" DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
@@ -211,11 +219,11 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
-                            <Button Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="401"/>
-                            <Button Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="402"/>
-                            <Button Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="403"/>
-                            <Button Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="404"/>
-                            <Button Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="405"/>
+                            <Button x:Name="przysAglomeracyjne401" Click="ViewButton_Click" Grid.Column="1" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="401"/>
+                            <Button x:Name="przysAglomeracyjne402" Click="ViewButton_Click" Grid.Column="2" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="402"/>
+                            <Button x:Name="przysAglomeracyjne403" Click="ViewButton_Click" Grid.Column="3" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="403"/>
+                            <Button x:Name="przysAglomeracyjne404" Click="ViewButton_Click" Grid.Column="4" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="404"/>
+                            <Button x:Name="przysAglomeracyjne405" Click="ViewButton_Click" Grid.Column="5" Command="{Binding idrelacji}" HorizontalAlignment="Left" Height="30" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="30" Content="405"/>
                         </Grid>
                     </StackPanel>
                 </Grid>

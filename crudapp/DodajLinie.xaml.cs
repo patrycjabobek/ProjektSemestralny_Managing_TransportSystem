@@ -10,41 +10,32 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace crudapp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DodajLinie.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DodajLinie : Window
     {
-        
-        public MainWindow()
+        public DodajLinie()
         {
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // relacjeViewSource.Source = [generic data source]
         }
 
-        private void ViewButton_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            InformacjeOLinii info = new InformacjeOLinii();
 
-            info.Show();
         }
 
-        private void ViewAllButton_Click(object sender, RoutedEventArgs e)
-        {
-            WszystkieLinie all = new WszystkieLinie();
-            all.Show();
-        }
     }
-
 }
