@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RozkladJazdyKMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="czasyodjazdow">
+          <Key>
+            <PropertyRef Name="idczasu" />
+          </Key>
+          <Property Name="idprzejazdu" Type="smallint" />
+          <Property Name="dni" Type="smallint" />
+          <Property Name="czas" Type="time" Precision="7" />
+          <Property Name="idczasu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dni">
+          <Key>
+            <PropertyRef Name="idDni" />
+          </Key>
+          <Property Name="idDni" Type="smallint" Nullable="false" />
+          <Property Name="tydzien" Type="varchar" MaxLength="15" />
+          <Property Name="czynocny" Type="bit" />
+        </EntityType>
+        <EntityType Name="przejazdy">
+          <Key>
+            <PropertyRef Name="idprzejazdu" />
+          </Key>
+          <Property Name="idprzejazdu" Type="smallint" Nullable="false" />
+          <Property Name="idrelacji" Type="smallint" />
+          <Property Name="idprzystanku" Type="smallint" />
+        </EntityType>
+        <EntityType Name="przystanki">
+          <Key>
+            <PropertyRef Name="idprzystanku" />
+          </Key>
+          <Property Name="idprzystanku" Type="smallint" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="relacje">
+          <Key>
+            <PropertyRef Name="idrelacji" />
+          </Key>
+          <Property Name="idrelacji" Type="smallint" Nullable="false" />
+          <Property Name="numerlinii" Type="smallint" />
+          <Property Name="idpierwszegoprzystanku" Type="smallint" />
+          <Property Name="idostatniegoprzystanku" Type="smallint" />
+        </EntityType>
+        <EntityType Name="rodzajelinii">
+          <Key>
+            <PropertyRef Name="numerlinii" />
+          </Key>
+          <Property Name="numerlinii" Type="smallint" Nullable="false" />
+          <Property Name="nazwa" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'RozkladJazdyKM.dbo.ulice' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ulice">
+          <Property Name="idprzystanku" Type="smallint" />
+          <Property Name="nazwa" Type="nvarchar" MaxLength="100" />
+        </EntityType>-->
+        <Association Name="czasyodjazdow_dni_fkey">
+          <End Role="dni" Type="Self.dni" Multiplicity="0..1" />
+          <End Role="czasyodjazdow" Type="Self.czasyodjazdow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dni">
+              <PropertyRef Name="idDni" />
+            </Principal>
+            <Dependent Role="czasyodjazdow">
+              <PropertyRef Name="dni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="czasyodjazdow_idprzejazdu_fkey1">
+          <End Role="przejazdy" Type="Self.przejazdy" Multiplicity="0..1" />
+          <End Role="czasyodjazdow" Type="Self.czasyodjazdow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejazdy">
+              <PropertyRef Name="idprzejazdu" />
+            </Principal>
+            <Dependent Role="czasyodjazdow">
+              <PropertyRef Name="idprzejazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="przejazdy_idprzystanku_fkey">
+          <End Role="przystanki" Type="Self.przystanki" Multiplicity="0..1" />
+          <End Role="przejazdy" Type="Self.przejazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przystanki">
+              <PropertyRef Name="idprzystanku" />
+            </Principal>
+            <Dependent Role="przejazdy">
+              <PropertyRef Name="idprzystanku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="przejazdy_idrelacji_fkey">
+          <End Role="relacje" Type="Self.relacje" Multiplicity="0..1" />
+          <End Role="przejazdy" Type="Self.przejazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relacje">
+              <PropertyRef Name="idrelacji" />
+            </Principal>
+            <Dependent Role="przejazdy">
+              <PropertyRef Name="idrelacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relacje_idostatniegoprzystanku_fkey">
+          <End Role="przystanki" Type="Self.przystanki" Multiplicity="0..1" />
+          <End Role="relacje" Type="Self.relacje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przystanki">
+              <PropertyRef Name="idprzystanku" />
+            </Principal>
+            <Dependent Role="relacje">
+              <PropertyRef Name="idostatniegoprzystanku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relacje_idpierwszegoprzystanku_fkey">
+          <End Role="przystanki" Type="Self.przystanki" Multiplicity="0..1" />
+          <End Role="relacje" Type="Self.relacje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przystanki">
+              <PropertyRef Name="idprzystanku" />
+            </Principal>
+            <Dependent Role="relacje">
+              <PropertyRef Name="idpierwszegoprzystanku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relacje_numerlinii_fkey">
+          <End Role="rodzajelinii" Type="Self.rodzajelinii" Multiplicity="0..1" />
+          <End Role="relacje" Type="Self.relacje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rodzajelinii">
+              <PropertyRef Name="numerlinii" />
+            </Principal>
+            <Dependent Role="relacje">
+              <PropertyRef Name="numerlinii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'RozkladJazdyKM.dbo.ulice' is referenced by a relationship, but cannot be found.
+        <Association Name="ulice_idprzystanku_fkey" />-->
+        <EntityContainer Name="RozkladJazdyKMModelStoreContainer">
+          <EntitySet Name="czasyodjazdow" EntityType="Self.czasyodjazdow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dni" EntityType="Self.dni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="przejazdy" EntityType="Self.przejazdy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="przystanki" EntityType="Self.przystanki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="relacje" EntityType="Self.relacje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rodzajelinii" EntityType="Self.rodzajelinii" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="czasyodjazdow_dni_fkey" Association="Self.czasyodjazdow_dni_fkey">
+            <End Role="dni" EntitySet="dni" />
+            <End Role="czasyodjazdow" EntitySet="czasyodjazdow" />
+          </AssociationSet>
+          <AssociationSet Name="czasyodjazdow_idprzejazdu_fkey1" Association="Self.czasyodjazdow_idprzejazdu_fkey1">
+            <End Role="przejazdy" EntitySet="przejazdy" />
+            <End Role="czasyodjazdow" EntitySet="czasyodjazdow" />
+          </AssociationSet>
+          <AssociationSet Name="przejazdy_idprzystanku_fkey" Association="Self.przejazdy_idprzystanku_fkey">
+            <End Role="przystanki" EntitySet="przystanki" />
+            <End Role="przejazdy" EntitySet="przejazdy" />
+          </AssociationSet>
+          <AssociationSet Name="przejazdy_idrelacji_fkey" Association="Self.przejazdy_idrelacji_fkey">
+            <End Role="relacje" EntitySet="relacje" />
+            <End Role="przejazdy" EntitySet="przejazdy" />
+          </AssociationSet>
+          <AssociationSet Name="relacje_idostatniegoprzystanku_fkey" Association="Self.relacje_idostatniegoprzystanku_fkey">
+            <End Role="przystanki" EntitySet="przystanki" />
+            <End Role="relacje" EntitySet="relacje" />
+          </AssociationSet>
+          <AssociationSet Name="relacje_idpierwszegoprzystanku_fkey" Association="Self.relacje_idpierwszegoprzystanku_fkey">
+            <End Role="przystanki" EntitySet="przystanki" />
+            <End Role="relacje" EntitySet="relacje" />
+          </AssociationSet>
+          <AssociationSet Name="relacje_numerlinii_fkey" Association="Self.relacje_numerlinii_fkey">
+            <End Role="rodzajelinii" EntitySet="rodzajelinii" />
+            <End Role="relacje" EntitySet="relacje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RozkladJazdyKMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="czasyodjazdow">
+          <Key>
+            <PropertyRef Name="idczasu" />
+          </Key>
+          <Property Name="idprzejazdu" Type="Int16" />
+          <Property Name="dni" Type="Int16" />
+          <Property Name="czas" Type="Time" Precision="7" />
+          <Property Name="idczasu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="dni1" Relationship="Self.czasyodjazdow_dni_fkey" FromRole="czasyodjazdow" ToRole="dni" />
+          <NavigationProperty Name="przejazdy" Relationship="Self.czasyodjazdow_idprzejazdu_fkey1" FromRole="czasyodjazdow" ToRole="przejazdy" />
+        </EntityType>
+        <EntityType Name="dni">
+          <Key>
+            <PropertyRef Name="idDni" />
+          </Key>
+          <Property Name="idDni" Type="Int16" Nullable="false" />
+          <Property Name="tydzien" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="czynocny" Type="Boolean" />
+          <NavigationProperty Name="czasyodjazdow" Relationship="Self.czasyodjazdow_dni_fkey" FromRole="dni" ToRole="czasyodjazdow" />
+        </EntityType>
+        <EntityType Name="przejazdy">
+          <Key>
+            <PropertyRef Name="idprzejazdu" />
+          </Key>
+          <Property Name="idprzejazdu" Type="Int16" Nullable="false" />
+          <Property Name="idrelacji" Type="Int16" />
+          <Property Name="idprzystanku" Type="Int16" />
+          <NavigationProperty Name="czasyodjazdow" Relationship="Self.czasyodjazdow_idprzejazdu_fkey1" FromRole="przejazdy" ToRole="czasyodjazdow" />
+          <NavigationProperty Name="przystanki" Relationship="Self.przejazdy_idprzystanku_fkey" FromRole="przejazdy" ToRole="przystanki" />
+          <NavigationProperty Name="relacje" Relationship="Self.przejazdy_idrelacji_fkey" FromRole="przejazdy" ToRole="relacje" />
+        </EntityType>
+        <EntityType Name="przystanki">
+          <Key>
+            <PropertyRef Name="idprzystanku" />
+          </Key>
+          <Property Name="idprzystanku" Type="Int16" Nullable="false" />
+          <Property Name="nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="przejazdy" Relationship="Self.przejazdy_idprzystanku_fkey" FromRole="przystanki" ToRole="przejazdy" />
+          <NavigationProperty Name="relacje" Relationship="Self.relacje_idostatniegoprzystanku_fkey" FromRole="przystanki" ToRole="relacje" />
+          <NavigationProperty Name="relacje1" Relationship="Self.relacje_idpierwszegoprzystanku_fkey" FromRole="przystanki" ToRole="relacje" />
+        </EntityType>
+        <EntityType Name="relacje">
+          <Key>
+            <PropertyRef Name="idrelacji" />
+          </Key>
+          <Property Name="idrelacji" Type="Int16" Nullable="false" />
+          <Property Name="numerlinii" Type="Int16" />
+          <Property Name="idpierwszegoprzystanku" Type="Int16" />
+          <Property Name="idostatniegoprzystanku" Type="Int16" />
+          <NavigationProperty Name="przejazdy" Relationship="Self.przejazdy_idrelacji_fkey" FromRole="relacje" ToRole="przejazdy" />
+          <NavigationProperty Name="przystanki" Relationship="Self.relacje_idostatniegoprzystanku_fkey" FromRole="relacje" ToRole="przystanki" />
+          <NavigationProperty Name="przystanki1" Relationship="Self.relacje_idpierwszegoprzystanku_fkey" FromRole="relacje" ToRole="przystanki" />
+          <NavigationProperty Name="rodzajelinii" Relationship="Self.relacje_numerlinii_fkey" FromRole="relacje" ToRole="rodzajelinii" />
+        </EntityType>
+        <EntityType Name="rodzajelinii">
+          <Key>
+            <PropertyRef Name="numerlinii" />
+          </Key>
+          <Property Name="numerlinii" Type="Int16" Nullable="false" />
+          <Property Name="nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="relacje" Relationship="Self.relacje_numerlinii_fkey" FromRole="rodzajelinii" ToRole="relacje" />
+        </EntityType>
+        <Association Name="czasyodjazdow_dni_fkey">
+          <End Role="dni" Type="Self.dni" Multiplicity="0..1" />
+          <End Role="czasyodjazdow" Type="Self.czasyodjazdow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dni">
+              <PropertyRef Name="idDni" />
+            </Principal>
+            <Dependent Role="czasyodjazdow">
+              <PropertyRef Name="dni" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="czasyodjazdow_idprzejazdu_fkey1">
+          <End Role="przejazdy" Type="Self.przejazdy" Multiplicity="0..1" />
+          <End Role="czasyodjazdow" Type="Self.czasyodjazdow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przejazdy">
+              <PropertyRef Name="idprzejazdu" />
+            </Principal>
+            <Dependent Role="czasyodjazdow">
+              <PropertyRef Name="idprzejazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="przejazdy_idprzystanku_fkey">
+          <End Role="przystanki" Type="Self.przystanki" Multiplicity="0..1" />
+          <End Role="przejazdy" Type="Self.przejazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przystanki">
+              <PropertyRef Name="idprzystanku" />
+            </Principal>
+            <Dependent Role="przejazdy">
+              <PropertyRef Name="idprzystanku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="przejazdy_idrelacji_fkey">
+          <End Role="relacje" Type="Self.relacje" Multiplicity="0..1" />
+          <End Role="przejazdy" Type="Self.przejazdy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="relacje">
+              <PropertyRef Name="idrelacji" />
+            </Principal>
+            <Dependent Role="przejazdy">
+              <PropertyRef Name="idrelacji" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relacje_idostatniegoprzystanku_fkey">
+          <End Role="przystanki" Type="Self.przystanki" Multiplicity="0..1" />
+          <End Role="relacje" Type="Self.relacje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przystanki">
+              <PropertyRef Name="idprzystanku" />
+            </Principal>
+            <Dependent Role="relacje">
+              <PropertyRef Name="idostatniegoprzystanku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relacje_idpierwszegoprzystanku_fkey">
+          <End Role="przystanki" Type="Self.przystanki" Multiplicity="0..1" />
+          <End Role="relacje" Type="Self.relacje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="przystanki">
+              <PropertyRef Name="idprzystanku" />
+            </Principal>
+            <Dependent Role="relacje">
+              <PropertyRef Name="idpierwszegoprzystanku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="relacje_numerlinii_fkey">
+          <End Role="rodzajelinii" Type="Self.rodzajelinii" Multiplicity="0..1" />
+          <End Role="relacje" Type="Self.relacje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rodzajelinii">
+              <PropertyRef Name="numerlinii" />
+            </Principal>
+            <Dependent Role="relacje">
+              <PropertyRef Name="numerlinii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RozkladJazdyKMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="czasyodjazdow" EntityType="Self.czasyodjazdow" />
+          <EntitySet Name="dni" EntityType="Self.dni" />
+          <EntitySet Name="przejazdy" EntityType="Self.przejazdy" />
+          <EntitySet Name="przystanki" EntityType="Self.przystanki" />
+          <EntitySet Name="relacje" EntityType="Self.relacje" />
+          <EntitySet Name="rodzajelinii" EntityType="Self.rodzajelinii" />
+          <AssociationSet Name="czasyodjazdow_dni_fkey" Association="Self.czasyodjazdow_dni_fkey">
+            <End Role="dni" EntitySet="dni" />
+            <End Role="czasyodjazdow" EntitySet="czasyodjazdow" />
+          </AssociationSet>
+          <AssociationSet Name="czasyodjazdow_idprzejazdu_fkey1" Association="Self.czasyodjazdow_idprzejazdu_fkey1">
+            <End Role="przejazdy" EntitySet="przejazdy" />
+            <End Role="czasyodjazdow" EntitySet="czasyodjazdow" />
+          </AssociationSet>
+          <AssociationSet Name="przejazdy_idprzystanku_fkey" Association="Self.przejazdy_idprzystanku_fkey">
+            <End Role="przystanki" EntitySet="przystanki" />
+            <End Role="przejazdy" EntitySet="przejazdy" />
+          </AssociationSet>
+          <AssociationSet Name="przejazdy_idrelacji_fkey" Association="Self.przejazdy_idrelacji_fkey">
+            <End Role="relacje" EntitySet="relacje" />
+            <End Role="przejazdy" EntitySet="przejazdy" />
+          </AssociationSet>
+          <AssociationSet Name="relacje_idostatniegoprzystanku_fkey" Association="Self.relacje_idostatniegoprzystanku_fkey">
+            <End Role="przystanki" EntitySet="przystanki" />
+            <End Role="relacje" EntitySet="relacje" />
+          </AssociationSet>
+          <AssociationSet Name="relacje_idpierwszegoprzystanku_fkey" Association="Self.relacje_idpierwszegoprzystanku_fkey">
+            <End Role="przystanki" EntitySet="przystanki" />
+            <End Role="relacje" EntitySet="relacje" />
+          </AssociationSet>
+          <AssociationSet Name="relacje_numerlinii_fkey" Association="Self.relacje_numerlinii_fkey">
+            <End Role="rodzajelinii" EntitySet="rodzajelinii" />
+            <End Role="relacje" EntitySet="relacje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RozkladJazdyKMModelStoreContainer" CdmEntityContainer="RozkladJazdyKMEntities">
+          <EntitySetMapping Name="czasyodjazdow">
+            <EntityTypeMapping TypeName="RozkladJazdyKMModel.czasyodjazdow">
+              <MappingFragment StoreEntitySet="czasyodjazdow">
+                <ScalarProperty Name="idprzejazdu" ColumnName="idprzejazdu" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="czas" ColumnName="czas" />
+                <ScalarProperty Name="idczasu" ColumnName="idczasu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dni">
+            <EntityTypeMapping TypeName="RozkladJazdyKMModel.dni">
+              <MappingFragment StoreEntitySet="dni">
+                <ScalarProperty Name="idDni" ColumnName="idDni" />
+                <ScalarProperty Name="tydzien" ColumnName="tydzien" />
+                <ScalarProperty Name="czynocny" ColumnName="czynocny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="przejazdy">
+            <EntityTypeMapping TypeName="RozkladJazdyKMModel.przejazdy">
+              <MappingFragment StoreEntitySet="przejazdy">
+                <ScalarProperty Name="idprzejazdu" ColumnName="idprzejazdu" />
+                <ScalarProperty Name="idrelacji" ColumnName="idrelacji" />
+                <ScalarProperty Name="idprzystanku" ColumnName="idprzystanku" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="przystanki">
+            <EntityTypeMapping TypeName="RozkladJazdyKMModel.przystanki">
+              <MappingFragment StoreEntitySet="przystanki">
+                <ScalarProperty Name="idprzystanku" ColumnName="idprzystanku" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relacje">
+            <EntityTypeMapping TypeName="RozkladJazdyKMModel.relacje">
+              <MappingFragment StoreEntitySet="relacje">
+                <ScalarProperty Name="idrelacji" ColumnName="idrelacji" />
+                <ScalarProperty Name="numerlinii" ColumnName="numerlinii" />
+                <ScalarProperty Name="idpierwszegoprzystanku" ColumnName="idpierwszegoprzystanku" />
+                <ScalarProperty Name="idostatniegoprzystanku" ColumnName="idostatniegoprzystanku" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rodzajelinii">
+            <EntityTypeMapping TypeName="RozkladJazdyKMModel.rodzajelinii">
+              <MappingFragment StoreEntitySet="rodzajelinii">
+                <ScalarProperty Name="numerlinii" ColumnName="numerlinii" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

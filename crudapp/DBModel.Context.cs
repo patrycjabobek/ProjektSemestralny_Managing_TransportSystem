@@ -13,10 +13,10 @@ namespace crudapp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Database1Entities : DbContext
+    public partial class RozkladJazdyKMEntities : DbContext
     {
-        public Database1Entities()
-            : base("name=Database1Entities")
+        public RozkladJazdyKMEntities()
+            : base("name=RozkladJazdyKMEntities")
         {
         }
     
@@ -25,5 +25,11 @@ namespace crudapp
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<czasyodjazdow> czasyodjazdow { get; set; }
+        public virtual DbSet<dni> dni { get; set; }
+        public virtual DbSet<przejazdy> przejazdy { get; set; }
+        public virtual DbSet<przystanki> przystanki { get; set; }
+        public virtual DbSet<relacje> relacje { get; set; }
+        public virtual DbSet<rodzajelinii> rodzajelinii { get; set; }
     }
 }
