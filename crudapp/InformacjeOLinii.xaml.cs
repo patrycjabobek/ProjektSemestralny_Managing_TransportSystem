@@ -19,6 +19,7 @@ namespace crudapp
     /// </summary>
     public partial class InformacjeOLinii : Window
     {
+        
         public InformacjeOLinii()
         {
             InitializeComponent();
@@ -39,6 +40,8 @@ namespace crudapp
             System.Windows.Data.CollectionViewSource czasyodjazdowViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("czasyodjazdowViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // czasyodjazdowViewSource.Source = [generic data source]
+
+           
         }
 
 

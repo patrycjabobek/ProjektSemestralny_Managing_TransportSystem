@@ -19,9 +19,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Rozkład Jazdy" FontSize="20" FontWeight="Bold"/>
-                <Button Margin="0 0 10 0" Grid.Column="1" Content="DODAJ"/>
                 <Button Grid.Column="2" Content="USUŃ"/>
-                <Button Margin="10 0 0 0" Grid.Column="3" Content="AKTUALIZUJ"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -29,7 +27,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Padding="0 15 0 0" Text="Wybierz linię:" FontSize="20"/>
-                <Button Grid.Column="1" Click="ViewAllButton_Click" Margin="100 20 50 0" Content="Pokaż wszystkie linie" />
+                <Button Grid.Column="1" Click="ViewAllButton_Click" Margin="99.8,10,49.6,-0.4" Content="Pokaż wszystkie linie" />
             </Grid>
             
             

@@ -7,20 +7,31 @@
         mc:Ignorable="d"
         Title="WszystkieLinie" Height="450" Width="1000" Loaded="Window_Loaded">
     <Window.Resources>
+        <RoutedUICommand x:Key="DodajPrzejazdCommand" Text="DODAJ NOWY PRZEJAZD"/>
+        <RoutedUICommand x:Key="DodajPrzystanekCommand" Text="DODAJ NOWY PRZYSTANEK"/>
+        <RoutedUICommand x:Key="DodajLinieCommand" Text="DODAJ NOWĄ LINIĘ"/>
+        <RoutedUICommand x:Key="UsunCommand" Text="USUŃ"/>
         <CollectionViewSource x:Key="relacjeViewSource" d:DesignSource="{d:DesignInstance {x:Type local:relacje}, CreateList=True}"/>
         <CollectionViewSource x:Key="rozkladJazdyKMEntitiesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:RozkladJazdyKMEntities}, CreateList=True}"/>
         <CollectionViewSource x:Key="rozkladJazdyKMEntitiesrelacjeViewSource" Source="{Binding relacje, Source={StaticResource rozkladJazdyKMEntitiesViewSource}}"/>
         <CollectionViewSource x:Key="rozkladJazdyKMEntitiesprzystankiViewSource" Source="{Binding przystanki, Source={StaticResource rozkladJazdyKMEntitiesViewSource}}"/>
         <CollectionViewSource x:Key="rozkladJazdyKMEntitiesprzejazdyViewSource" Source="{Binding przejazdy, Source={StaticResource rozkladJazdyKMEntitiesViewSource}}"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource DodajPrzejazdCommand}" Executed="DodajPrzejazdCommandHandler"/>
+        <CommandBinding Command="{StaticResource DodajPrzystanekCommand}" Executed="DodajPrzystanekCommandHandler"/>
+        <CommandBinding Command="{StaticResource DodajLinieCommand}" Executed="DodajLinieCommandHandler"/>
+        <CommandBinding Command="{StaticResource UsunCommand}" Executed="UsunCommandHandler"/>
+    </Window.CommandBindings>
     <Grid DataContext="{StaticResource relacjeViewSource}">
         <StackPanel Margin="10">
             <TextBlock Text="Wszystkie linie, ich przejazdy" FontSize="15" FontWeight="DemiBold"/>
             <TextBlock Text="oraz przystanki" FontSize="15" FontWeight="DemiBold"/>
+            <Label Content="Numery linii:" Margin="0"/>
+            <TextBlock> 1 - tramwajowa | 2 - autobusowa miejska | 3 - autobusowa aglomeracyjna | 4 - autobusowa aglomeracyjna przyspieszona</TextBlock>
+            <TextBlock> 5 - autobusowa miejska przyspieszona | 6 - autobusowa miejskia nocna | 7 - aglomeracyjna nocna</TextBlock>
         </StackPanel>
-        
-        <Button Click="DodajLinieButton_Click" Content="DODAJ NOWĄ LINIĘ" HorizontalAlignment="Left" Margin="827,10,0,0" VerticalAlignment="Top" Width="136" Height="30"/>
-        <DataGrid x:Name="relacjeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rozkladJazdyKMEntitiesrelacjeViewSource}}" Margin="10,111,387.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="relacjeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource rozkladJazdyKMEntitiesrelacjeViewSource}}" Margin="10,111,587.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idrelacjiColumn" Binding="{Binding idrelacji}" Header="IDrelacji" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="numerliniiColumn" Binding="{Binding numerlinii}" Header="NumerLinii" Width="SizeToHeader"/>
@@ -41,9 +52,11 @@
                 <DataGridTextColumn x:Name="idrelacjiColumn1" Binding="{Binding idrelacji}" Header="IDrelacji" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="DODAJ NOWY PRZYSTANEK" HorizontalAlignment="Left" Margin="630,11,0,0" VerticalAlignment="Top" Width="168" Height="29"/>
-        <Button Content="DODAJ NOWY PRZEJAZD" HorizontalAlignment="Left" Margin="446,11,0,0" VerticalAlignment="Top" Width="160" Height="29"/>
-        <Button Content="WYJDŹ" HorizontalAlignment="Left" Margin="870,57,0,0" VerticalAlignment="Top" Width="93" Height="25"/>
+        <Button Name="btnDodajPrzejazd" Content="DODAJ NOWY PRZEJAZD" HorizontalAlignment="Left" Margin="630,11,0,0" VerticalAlignment="Top" Width="168" Height="29" Command="{StaticResource DodajPrzejazdCommand}" Click="btnDodajPrzejazd_Click"/>
+        <Button Name="btnDodajPrzystanek" Content="DODAJ NOWY PRZYSTANEK" HorizontalAlignment="Left" Margin="446,11,0,0" VerticalAlignment="Top" Width="160" Height="29" Command="{StaticResource DodajPrzystanekCommand}" Click="btnDodajPrzystanek_Click"/>
+        <Button Name="btnDodajLinie" Content="DODAJ NOWĄ LINIĘ"  Click="DodajLinieButton_Click"  HorizontalAlignment="Left" Margin="827,10,0,0" VerticalAlignment="Top" Width="136" Height="30" Command="{StaticResource DodajLinieCommand}"/>
+        <Button Name="btnUsun" Content="USUŃ RELACJE"  Click="UsunButton_Click"  HorizontalAlignment="Left" Margin="742,57,0,0" VerticalAlignment="Top" Width="105" Height="25" Command="{StaticResource UsunCommand}"/>
+        <Button Content="WYJDŹ" HorizontalAlignment="Left" Margin="870,57,0,0" VerticalAlignment="Top" Width="93" Height="25" Click="LeaveBtn_Click"/>
     </Grid>
 
 </Window>

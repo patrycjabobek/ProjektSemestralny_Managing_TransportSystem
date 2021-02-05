@@ -11,17 +11,25 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using System.Data;
 
 namespace crudapp
 {
+    
     /// <summary>
     /// Interaction logic for DodajLinie.xaml
     /// </summary>
     public partial class DodajLinie : Window
     {
-        public DodajLinie()
+        RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
+        DataTable dt = new DataTable("relacje");
+        WszystkieLinie wl = new WszystkieLinie();
+
+        public DodajLinie(WszystkieLinie wl)
         {
             InitializeComponent();
+            this.wl = wl;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,10 +40,44 @@ namespace crudapp
             // relacjeViewSource.Source = [generic data source]
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void AddAndSaveButton_Click(object sender, EventArgs e)
+        {
+            DataRow dr = dt.NewRow();
+
+            dr["idrelacji"] = int.Parse(idrelacjiTextBox.Text);
+            dr["numerlinii"] = int.Parse(numerliniiTextBox.Text);
+            dr["idostatniegoprzystanku"] = int.Parse(idostatniegoprzystankuTextBox.Text);
+            dr["idpierwszegoprzystanku"] = int.Parse(idpierwszegoprzystankuTextBox.Text);
+            dt.Rows.Add(dr);
+
+
+        }
+
+        // checks if input has only numbers
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            idostatniegoprzystankuTextBox.Text = "";
+            idpierwszegoprzystankuTextBox.Text = "";
+            numerliniiTextBox.Text = "";
+            idrelacjiTextBox.Text = "";
+
+            this.Close();
+        }
+
+        private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
 
         }
 
+        private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
     }
 }

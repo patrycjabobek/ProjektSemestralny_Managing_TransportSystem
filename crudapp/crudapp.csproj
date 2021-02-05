@@ -101,6 +101,12 @@
     <Compile Include="DodajLinie.xaml.cs">
       <DependentUpon>DodajLinie.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DodajPrzejazd.xaml.cs">
+      <DependentUpon>DodajPrzejazd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DodajPrzystanek.xaml.cs">
+      <DependentUpon>DodajPrzystanek.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InformacjeOLinii.xaml.cs">
       <DependentUpon>InformacjeOLinii.xaml</DependentUpon>
     </Compile>
@@ -120,6 +126,14 @@
       <DependentUpon>WszystkieLinie.xaml</DependentUpon>
     </Compile>
     <Page Include="DodajLinie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajPrzejazd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DodajPrzystanek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

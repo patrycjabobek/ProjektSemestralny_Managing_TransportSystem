@@ -22,6 +22,9 @@ namespace crudapp
     public partial class WszystkieLinie : Window
     {
         RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
+        CollectionViewSource relacjeViewSource;
+        CollectionViewSource rozkladJazdyKMEntitiesViewSource;
+
         public WszystkieLinie()
         {
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace crudapp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
+            relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // relacjeViewSource.Source = [generic data source]
             var query =
@@ -50,7 +53,7 @@ namespace crudapp
                 select new { przystanki.idprzystanku, przystanki.nazwa };
 
             przystankiDataGrid.ItemsSource = query3.ToList();
-            System.Windows.Data.CollectionViewSource rozkladJazdyKMEntitiesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rozkladJazdyKMEntitiesViewSource")));
+            rozkladJazdyKMEntitiesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rozkladJazdyKMEntitiesViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // rozkladJazdyKMEntitiesViewSource.Source = [generic data source]
         }
@@ -62,8 +65,70 @@ namespace crudapp
 
         private void DodajLinieButton_Click(object sender, RoutedEventArgs e)
         {
-            DodajLinie dL = new DodajLinie();
+            DodajLinie dL = new DodajLinie(this);
             dL.Show();
+        }
+
+        private void btnDodajPrzystanek_Click(object sender, RoutedEventArgs e)
+        {
+            DodajPrzystanek dp = new DodajPrzystanek();
+            dp.Show();
+        }
+
+        private void btnDodajPrzejazd_Click(object sender, RoutedEventArgs e)
+        {
+            DodajPrzejazd dp = new DodajPrzejazd();
+            dp.Show();
+        }
+
+        private void DodajLinieCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+        private void DodajPrzejazdCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+        private void DodajPrzystanekCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void LeaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void UsunButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void Usun(relacje relacje)
+        {
+            if (relacje != null)
+            {
+                var relacja = (from r in dataEntities.relacje
+                               where r.idrelacji == relacje.idrelacji
+                               select r).FirstOrDefault();
+
+                foreach (var item in relacja.przejazdy)
+                {
+                    dataEntities.przejazdy.Remove(item);
+                }
+
+
+                dataEntities.relacje.Remove(relacja);
+                dataEntities.SaveChanges();
+
+                relacjeViewSource.View.Refresh();
+            }
+            
+        }
+
+        private void UsunCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            relacje rel = e.Parameter as relacje;
+            Usun(rel);
         }
     }
 }
