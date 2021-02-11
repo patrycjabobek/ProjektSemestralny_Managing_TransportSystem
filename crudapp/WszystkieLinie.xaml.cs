@@ -63,19 +63,19 @@ namespace crudapp
 
         }
 
-        private void DodajLinieButton_Click(object sender, RoutedEventArgs e)
+        private void BtnDodajLinie_Click(object sender, RoutedEventArgs e)
         {
             DodajLinie dL = new DodajLinie(this);
             dL.Show();
         }
 
-        private void btnDodajPrzystanek_Click(object sender, RoutedEventArgs e)
+        private void BtnDodajPrzystanek_Click(object sender, RoutedEventArgs e)
         {
             DodajPrzystanek dp = new DodajPrzystanek();
             dp.Show();
         }
 
-        private void btnDodajPrzejazd_Click(object sender, RoutedEventArgs e)
+        private void BtnDodajPrzejazd_Click(object sender, RoutedEventArgs e)
         {
             DodajPrzejazd dp = new DodajPrzejazd();
             dp.Show();

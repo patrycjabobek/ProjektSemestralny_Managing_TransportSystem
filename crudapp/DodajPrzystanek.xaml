@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
-        Title="Dodaj Przystanek" Height="247.6" Width="350" Loaded="Window_Loaded_1">
+        Title="Dodaj Przystanek" Height="247.6" Width="350" ResizeMode="NoResize" Loaded="Window_Loaded_1">
     <Window.Resources>
         <CollectionViewSource x:Key="przystankiViewSource" d:DesignSource="{d:DesignInstance {x:Type local:przystanki}, CreateList=True}"/>
     </Window.Resources>

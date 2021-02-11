@@ -39,7 +39,7 @@
 
                 <Label Content="Przystanek początkowy:" Grid.Column="1" HorizontalAlignment="Left" Margin="2.2,3.6,0,4" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="144"/>
                 <TextBox IsReadOnly="True" x:Name="idpierwszegoprzystankuTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3.8,4.8,-43.8,5.6" Grid.Row="1" Text="{Binding idpierwszegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="168" Grid.ColumnSpan="2"/>
-                <Label Content="Przystanek Ostatni:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3.8" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                <Label Content="Przystanek ostatni:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,3.8" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
                 <TextBox IsReadOnly="True" x:Name="idostatniegoprzystankuTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3.8,5,-43.8,5.4" Grid.Row="0" Text="{Binding idostatniegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="168" Grid.ColumnSpan="2"/>
                 <Grid x:Name="grid2" DataContext="{StaticResource rodzajeliniiViewSource}" HorizontalAlignment="Left" Margin="-1,1.8,-52.8,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="4" Height="41" Width="317">
                     <Grid.RenderTransform>

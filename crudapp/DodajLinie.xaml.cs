@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace crudapp
 {
@@ -22,9 +23,9 @@ namespace crudapp
     /// </summary>
     public partial class DodajLinie : Window
     {
-        RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
-        DataTable dt = new DataTable("relacje");
-        WszystkieLinie wl = new WszystkieLinie();
+        private readonly RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
+        private readonly DataTable dt = new DataTable("relacje");
+        private readonly WszystkieLinie wl = new WszystkieLinie();
 
         public DodajLinie(WszystkieLinie wl)
         {
@@ -42,13 +43,49 @@ namespace crudapp
 
         private void AddAndSaveButton_Click(object sender, EventArgs e)
         {
-            DataRow dr = dt.NewRow();
+            //DataRow dr = dt.NewRow();
 
-            dr["idrelacji"] = int.Parse(idrelacjiTextBox.Text);
-            dr["numerlinii"] = int.Parse(numerliniiTextBox.Text);
-            dr["idostatniegoprzystanku"] = int.Parse(idostatniegoprzystankuTextBox.Text);
-            dr["idpierwszegoprzystanku"] = int.Parse(idpierwszegoprzystankuTextBox.Text);
-            dt.Rows.Add(dr);
+            //dr["idrelacji"] = int.Parse(idrelacjiTextBox.Text);
+            //dr["numerlinii"] = int.Parse(numerliniiTextBox.Text);
+            //dr["idostatniegoprzystanku"] = int.Parse(idostatniegoprzystankuTextBox.Text);
+            //dr["idpierwszegoprzystanku"] = int.Parse(idpierwszegoprzystankuTextBox.Text);
+            //dt.Rows.Add(dr);
+
+            
+            ushort idOP = Convert.ToUInt16(idostatniegoprzystankuTextBox.Text);
+            ushort idPP = Convert.ToUInt16(idpierwszegoprzystankuTextBox.Text);
+            ushort idR = Convert.ToUInt16(idrelacjiTextBox.Text);
+            ushort numerLinii = Convert.ToUInt16(numerliniiTextBox.Text);
+            string query = "INSERT INTO relacje " +
+                "VALUES(@idOP, @idPP, @idR , @numerLinii";
+            using (SqlConnection connection = new SqlConnection("Data Source=(localDB)\\MSSQLLocalDB;Initial Catalog=RozkladJazdyKM;Integrated Security=SSPI"))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add("@idOP", SqlDbType.SmallInt).Value = idOP;
+                command.Parameters.Add("@idPP", SqlDbType.SmallInt).Value = idPP;
+                command.Parameters.Add("@idR", SqlDbType.SmallInt).Value = idR;
+                command.Parameters.Add("@numerLinii", SqlDbType.SmallInt).Value = numerLinii;
+                command.CommandType = CommandType.Text;
+
+                try
+                {
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Dodano nową linię");
+                }
+                catch (SqlException exception)
+                {
+                    MessageBox.Show("Błąd: " + exception);
+                }
+                finally
+                {
+                    if (connection != null)
+                        connection.Close();
+                }
+            }
+            
+
 
 
         }
@@ -62,22 +99,22 @@ namespace crudapp
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+           
+        }
+
+        private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
             idostatniegoprzystankuTextBox.Text = "";
             idpierwszegoprzystankuTextBox.Text = "";
             numerliniiTextBox.Text = "";
             idrelacjiTextBox.Text = "";
 
             this.Close();
-        }
-
-        private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
-
-        private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-
         }
     }
 }

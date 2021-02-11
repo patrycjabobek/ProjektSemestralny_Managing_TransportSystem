@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
-        Title="Dodaj Linię" Height="270" Width="350" Loaded="Window_Loaded">
+        Title="Dodaj Linię" Height="270" Width="350" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Window.Resources>
         <RoutedUICommand x:Key="AddCommand" Text="Dodaj i zapisz"/>
         <RoutedUICommand x:Key="CancelCommand" Text="Anuluj"/>

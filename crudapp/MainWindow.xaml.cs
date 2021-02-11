@@ -35,7 +35,8 @@ namespace crudapp
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-            InformacjeOLinii info = new InformacjeOLinii();
+            string number = (string)(sender as Button).Content;
+            InformacjeOLinii info = new InformacjeOLinii(number);
 
             info.Show();
         }

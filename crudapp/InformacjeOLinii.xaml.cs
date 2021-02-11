@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,23 @@ namespace crudapp
     /// </summary>
     public partial class InformacjeOLinii : Window
     {
-        
-        public InformacjeOLinii()
+        //private readonly RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
+        private readonly DataTable dtRelacje = new DataTable("relacje");
+        //private readonly DataTable dtDni = new DataTable("dni");
+        //private readonly DataTable dtPrzejazdy = new DataTable("przejazdy");
+        public InformacjeOLinii(string number)
         {
             InitializeComponent();
+
+            DataRow[] drRelacje = dtRelacje.Select($"idrelacji={Convert.ToUInt16(number)}");
+            foreach (DataRow row in drRelacje)
+            {
+                idostatniegoprzystankuTextBox.Text = row["idostatniegoprzystanku"].ToString();
+                idpierwszegoprzystankuTextBox.Text = row["idpierwszegoprzystanku"].ToString();
+                nazwaTextBox.Text = row["numerLinii"].ToString();
+            }
+            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
