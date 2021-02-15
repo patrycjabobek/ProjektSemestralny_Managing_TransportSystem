@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crudapp.BazaDanych;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -109,32 +110,34 @@ namespace crudapp
 
             
         }
-        private void Usun(relacje relacje)
+        private void Usun()
         {
-            if (relacje != null)
-            {
-                var relacja = (from r in dataEntities.relacje
-                               where r.idrelacji == relacje.idrelacji
-                               select r).FirstOrDefault();
 
-                foreach (var item in relacja.przejazdy)
-                {
-                    dataEntities.przejazdy.Remove(item);
-                }
+            throw new NotImplementedException();
+            //if (relacje != null)
+            //{
+            //    var relacja = (from r in dataEntities.relacje
+            //                   where r.idrelacji == relacje.idrelacji
+            //                   select r).FirstOrDefault();
+
+            //    foreach (var item in relacja.przejazdy)
+            //    {
+            //        dataEntities.przejazdy.Remove(item);
+            //    }
 
 
-                dataEntities.relacje.Remove(relacja);
-                dataEntities.SaveChanges();
+            //    dataEntities.relacje.Remove(relacja);
+            //    dataEntities.SaveChanges();
 
-                relacjeViewSource.View.Refresh();
-            }
-            
+            //    relacjeViewSource.View.Refresh();
+            //}
+
         }
 
         private void UsunCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            relacje rel = e.Parameter as relacje;
-            Usun(rel);
+            throw new NotImplementedException();
+
         }
     }
 }

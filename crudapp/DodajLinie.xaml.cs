@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Data;
 using System.Data.SqlClient;
+using crudapp.BazaDanych;
 
 namespace crudapp
 {

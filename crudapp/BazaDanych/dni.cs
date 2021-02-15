@@ -7,26 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace crudapp
+namespace crudapp.BazaDanych
 {
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class przejazdy
+    public partial class dni
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public przejazdy()
+        public dni()
         {
             this.czasyodjazdow = new ObservableCollection<czasyodjazdow>();
         }
     
-        public short idprzejazdu { get; set; }
-        public Nullable<short> idrelacji { get; set; }
-        public Nullable<short> idprzystanku { get; set; }
+        public short idDni { get; set; }
+        public string tydzien { get; set; }
+        public Nullable<bool> czynocny { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<czasyodjazdow> czasyodjazdow { get; set; }
-        public virtual przystanki przystanki { get; set; }
-        public virtual relacje relacje { get; set; }
     }
 }

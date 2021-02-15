@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
-        Title="Dodaj Przystanek" Height="247.6" Width="350" ResizeMode="NoResize" Loaded="Window_Loaded_1">
+        Title="Dodaj Przystanek" Height="400" Width="450" ResizeMode="NoResize" Loaded="Window_Loaded_1">
     <Window.Resources>
         <CollectionViewSource x:Key="przystankiViewSource" d:DesignSource="{d:DesignInstance {x:Type local:przystanki}, CreateList=True}"/>
     </Window.Resources>
-    <Grid>
-        <TextBlock Text="Dodaj nowy przystanek" Margin="15" FontSize="15" FontWeight="DemiBold"/>
+    <Grid DataContext="{StaticResource przystankiViewSource}" Margin="0,0,0.2,-5.6">
+        <TextBlock Text="{Binding}" Margin="15,15,15.2,328.4" FontSize="15" FontWeight="DemiBold"/>
         <Grid x:Name="grid1" DataContext="{StaticResource przystankiViewSource}" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Height="107" Width="324">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -25,6 +25,12 @@
             <Label Content="Nazwa:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="nazwaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button Click="AddAndSaveButton_Click" Content="Dodaj i zapisz" HorizontalAlignment="Left" Margin="201,167,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button Click="AddAndSaveButton_Click" Content="Dodaj i zapisz" HorizontalAlignment="Left" Margin="311,36,0,0" VerticalAlignment="Top" Width="104"/>
+        <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,172,28,22" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

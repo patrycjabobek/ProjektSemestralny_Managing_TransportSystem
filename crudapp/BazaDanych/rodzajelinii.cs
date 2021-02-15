@@ -7,29 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace crudapp
+namespace crudapp.BazaDanych
 {
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class przystanki
+    public partial class rodzajelinii
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public przystanki()
+        public rodzajelinii()
         {
-            this.przejazdy = new ObservableCollection<przejazdy>();
             this.relacje = new ObservableCollection<relacje>();
-            this.relacje1 = new ObservableCollection<relacje>();
         }
     
-        public short idprzystanku { get; set; }
+        public short numerlinii { get; set; }
         public string nazwa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<przejazdy> przejazdy { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<relacje> relacje { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<relacje> relacje1 { get; set; }
     }
 }
