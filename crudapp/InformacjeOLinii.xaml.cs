@@ -22,20 +22,31 @@ namespace crudapp
     {
         //private readonly RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
         private readonly DataTable dtRelacje = new DataTable("relacje");
-        //private readonly DataTable dtDni = new DataTable("dni");
+        private readonly DataTable dtDni = new DataTable("dni");
         //private readonly DataTable dtPrzejazdy = new DataTable("przejazdy");
         public InformacjeOLinii(string number)
         {
             InitializeComponent();
 
-            DataRow[] drRelacje = dtRelacje.Select($"idrelacji={Convert.ToUInt16(number)}");
+            string idRelacji;
+            idRelacji = $"idrelacji={Convert.ToUInt16(number)}";
+            DataRow[] drRelacje = dtRelacje.Select(idRelacji);
             foreach (DataRow row in drRelacje)
             {
                 idostatniegoprzystankuTextBox.Text = row["idostatniegoprzystanku"].ToString();
                 idpierwszegoprzystankuTextBox.Text = row["idpierwszegoprzystanku"].ToString();
                 nazwaTextBox.Text = row["numerLinii"].ToString();
             }
-            
+
+            string idDni;
+            idDni = $"idDni={Convert.ToUInt16(number)}";
+            DataRow[] drDni = dtDni.Select(idDni);
+            foreach (DataRow row in drDni)
+            {
+               // czynocnyCheckBox.IsChecked = row["czynocny"].ToString());
+                tydzienTextBox.Text = row["tydzien"].ToString();
+
+            }
 
         }
 

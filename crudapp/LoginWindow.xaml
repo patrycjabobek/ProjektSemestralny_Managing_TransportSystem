@@ -1,0 +1,19 @@
+﻿<Window x:Class="crudapp.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:crudapp"
+        mc:Ignorable="d"
+        Title="Logowanie" Height="450" Width="500" Background="Gray">
+    <Grid>
+        <StackPanel Margin="20">
+            <Label Content="ZALOGUJ SIE" Foreground="white" FontSize="25" HorizontalAlignment="Center"/>
+            <Label Content="Nazwa Użytkownika" Foreground="white" FontSize="20" Margin="0,0,-0.4,0" HorizontalAlignment="Right" Width="444"/>
+            <TextBox Name="NazwaUzytkownika_Box" Background="#545d6a"  FontSize="18" Margin="10,0,9.6,0" Height="44"/>
+            <Label Content="Hasło" FontSize="20" Foreground="white" Margin="10,0,-0.4,0"/>
+            <PasswordBox Name="Haslo_PasswordBox" Background="#545d6a"  FontSize="18" Margin="10,0,9.6,0" Height="40"/>
+            <Button x:Name="Zaloguj_Button" Click="Zaloguj_Button_Click" Content="ZALOGUJ SIĘ" Margin="76,10,75.6,10" Background="#545d6a" Foreground="White" FontSize="18" Height="50"/>
+        </StackPanel>
+    </Grid>
+</Window>

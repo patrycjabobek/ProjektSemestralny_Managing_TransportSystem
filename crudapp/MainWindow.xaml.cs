@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +30,11 @@ namespace crudapp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // relacjeViewSource.Source = [generic data source]
+            
         }
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)

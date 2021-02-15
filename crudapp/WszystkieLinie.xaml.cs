@@ -101,6 +101,12 @@ namespace crudapp
 
         private void UsunButton_Click(object sender, RoutedEventArgs e)
         {
+            //var selectedItem = this.relacjeDataGrid.SelectedItem;
+            //if (selectedItem != null)
+            //{
+            //    relacjeDataGrid.Items.Remove(selectedItem);
+            //}
+
             
         }
         private void Usun(relacje relacje)
