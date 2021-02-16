@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crudapp.BazaDanych;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace crudapp
     /// </summary>
     public partial class RodzajeLinii : Window
     {
+        RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
         public RodzajeLinii()
         {
             InitializeComponent();
@@ -33,6 +35,53 @@ namespace crudapp
             rozkladJazdyKMDataSetrodzajeliniiTableAdapter.Fill(rozkladJazdyKMDataSet.rodzajelinii);
             System.Windows.Data.CollectionViewSource rodzajeliniiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rodzajeliniiViewSource")));
             rodzajeliniiViewSource.View.MoveCurrentToFirst();
+
+            var query =
+                from rodzaje in bazaDanych.rodzajelinii
+                select rodzaje;
+
+            rodzajeliniiDataGrid.ItemsSource = query.ToList();
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            numerliniiTextBox.Text = String.Empty;
+            nazwaTextBox.Text = String.Empty;
+
+            this.Close();
+        }
+
+        private void AddAndSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (numerliniiTextBox.Text == String.Empty ||
+                 nazwaTextBox.Text == String.Empty)
+            {
+                MessageBox.Show("Uzupełnij wszystkie pola");
+            }
+            else
+            {
+                rodzajelinii nowyRodzajLinii = new rodzajelinii()
+                {
+                   numerlinii  = (short)Convert.ToInt16(numerliniiTextBox.Text),
+                   nazwa = nazwaTextBox.Text
+                };
+
+                bazaDanych.rodzajelinii.Add(nowyRodzajLinii);
+                bazaDanych.SaveChanges();
+
+                rodzajeliniiDataGrid.ItemsSource = bazaDanych.rodzajelinii.ToList();
+
+                numerliniiTextBox.Text = String.Empty;
+                nazwaTextBox.Text = String.Empty;
+
+            }
+
+        }
+
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
 }

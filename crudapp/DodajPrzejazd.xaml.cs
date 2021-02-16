@@ -62,7 +62,7 @@ namespace crudapp
                 bazaDanych.przejazdy.Add(nowyPrzejazd);
                 bazaDanych.SaveChanges();
 
-                przejazdyDataGrid.ItemsSource = bazaDanych.relacje.ToList();
+                przejazdyDataGrid.ItemsSource = bazaDanych.przejazdy.ToList();
 
                 idprzejazduTextBox.Text = String.Empty;
                 idrelacjiTextBox.Text = String.Empty;

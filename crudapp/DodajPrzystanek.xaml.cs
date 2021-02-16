@@ -63,7 +63,7 @@ namespace crudapp
                 bazaDanych.przystanki.Add(nowyPrzystanek);
                 bazaDanych.SaveChanges();
 
-                przystankiDataGrid.ItemsSource = bazaDanych.relacje.ToList();
+                przystankiDataGrid.ItemsSource = bazaDanych.przystanki.ToList();
 
                 idprzystankuTextBox.Text = String.Empty;
                 nazwaTextBox.Text = String.Empty;
