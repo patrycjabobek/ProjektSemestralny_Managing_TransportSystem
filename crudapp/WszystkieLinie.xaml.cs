@@ -22,9 +22,8 @@ namespace crudapp
     /// </summary>
     public partial class WszystkieLinie : Window
     {
-        RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
-        CollectionViewSource relacjeViewSource;
-        CollectionViewSource rozkladJazdyKMEntitiesViewSource;
+        readonly RozkladJazdyKMEntities1 dataEntities = new RozkladJazdyKMEntities1();
+
 
         public WszystkieLinie()
         {
@@ -33,30 +32,40 @@ namespace crudapp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // relacjeViewSource.Source = [generic data source]
             var query =
-                 from relacje in dataEntities.relacje
-                 select new { relacje.idrelacji, relacje.numerlinii, relacje.idpierwszegoprzystanku, relacje.idostatniegoprzystanku };
+                 from relacja in dataEntities.relacje
+                 select new { relacja.idrelacji, relacja.numerlinii, relacja.idpierwszegoprzystanku, relacja.idostatniegoprzystanku };
 
             relacjeDataGrid.ItemsSource = query.ToList();
 
             var query2 =
-                from przejazdy in dataEntities.przejazdy
-                select new { przejazdy.idprzejazdu, przejazdy.idprzystanku, przejazdy.idrelacji };
+                from przejazd in dataEntities.przejazdy
+                select new { przejazd.idprzejazdu, przejazd.idprzystanku, przejazd.idrelacji };
 
             przejazdyDataGrid.ItemsSource = query2.ToList();
 
             var query3 =
-                from przystanki in dataEntities.przystanki
-                select new { przystanki.idprzystanku, przystanki.nazwa };
+                from przystanek in dataEntities.przystanki
+                select new { przystanek.idprzystanku, przystanek.nazwa };
 
             przystankiDataGrid.ItemsSource = query3.ToList();
-            rozkladJazdyKMEntitiesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rozkladJazdyKMEntitiesViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // rozkladJazdyKMEntitiesViewSource.Source = [generic data source]
+
+            crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
+            // Load data into the table relacje. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter rozkladJazdyKMDataSetrelacjeTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter();
+            rozkladJazdyKMDataSetrelacjeTableAdapter.Fill(rozkladJazdyKMDataSet.relacje);
+            System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
+            relacjeViewSource.View.MoveCurrentToFirst();
+            // Load data into the table przejazdy. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przejazdyTableAdapter rozkladJazdyKMDataSetprzejazdyTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przejazdyTableAdapter();
+            rozkladJazdyKMDataSetprzejazdyTableAdapter.Fill(rozkladJazdyKMDataSet.przejazdy);
+            System.Windows.Data.CollectionViewSource przejazdyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przejazdyViewSource")));
+            przejazdyViewSource.View.MoveCurrentToFirst();
+            // Load data into the table przystanki. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przystankiTableAdapter rozkladJazdyKMDataSetprzystankiTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przystankiTableAdapter();
+            rozkladJazdyKMDataSetprzystankiTableAdapter.Fill(rozkladJazdyKMDataSet.przystanki);
+            System.Windows.Data.CollectionViewSource przystankiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przystankiViewSource")));
+            przystankiViewSource.View.MoveCurrentToFirst();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,18 +91,6 @@ namespace crudapp
             dp.Show();
         }
 
-        private void DodajLinieCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
-        private void DodajPrzejazdCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
-        private void DodajPrzystanekCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
 
         private void LeaveBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -134,10 +131,5 @@ namespace crudapp
 
         }
 
-        private void UsunCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-
-        }
     }
 }

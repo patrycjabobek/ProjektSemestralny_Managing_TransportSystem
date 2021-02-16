@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RJKMLibrary
 {
-    class Dzien
+    public class Dzien
     {
         public ushort idDni { get; set; }
         public string tydzien { get; set; }

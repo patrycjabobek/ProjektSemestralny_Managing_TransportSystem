@@ -27,14 +27,13 @@ namespace crudapp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
             System.Windows.Data.CollectionViewSource przystankiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przystankiViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // przystankiViewSource.Source = [generic data source]
+            crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
+            // Load data into the table przystanki. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przystankiTableAdapter rozkladJazdyKMDataSetprzystankiTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przystankiTableAdapter();
+            rozkladJazdyKMDataSetprzystankiTableAdapter.Fill(rozkladJazdyKMDataSet.przystanki);
         }
 
         private void AddAndSaveButton_Click(object sender, RoutedEventArgs e)

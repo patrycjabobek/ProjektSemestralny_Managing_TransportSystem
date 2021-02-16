@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RJKMLibrary
 {
-    class Relacja
+    public class Relacja
     {
         public ushort idRelacji { get; set; }
         public ushort numerLinii { get; set; }

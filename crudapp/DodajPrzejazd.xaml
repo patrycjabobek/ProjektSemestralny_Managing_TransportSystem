@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
-        Title="DodajPrzejazd" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="DodajPrzejazd" Height="450" Width="400" Background="DarkSeaGreen" ResizeMode="NoResize">
+    <Border Background="YellowGreen" Padding="10" BorderThickness="0,0,15,0">
+        <StackPanel  TextElement.Foreground="DarkSlateGray">
+            
+        </StackPanel>
+    </Border>
+
 </Window>

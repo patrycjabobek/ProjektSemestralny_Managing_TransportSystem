@@ -1,8 +1,0 @@
-﻿CREATE TABLE [dbo].[Tabl]
-(
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [Title] NVARCHAR(50) NOT NULL, 
-    [Author] NVARCHAR(50) NOT NULL, 
-    [Year] SMALLINT NOT NULL, 
-    [LoanedTo] NVARCHAR(50) NOT NULL
-)

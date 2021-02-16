@@ -18,15 +18,14 @@ using crudapp.BazaDanych;
 
 namespace crudapp
 {
-    
+
     /// <summary>
     /// Interaction logic for DodajLinie.xaml
     /// </summary>
     public partial class DodajLinie : Window
     {
-        private readonly RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
-        private readonly DataTable dt = new DataTable("relacje");
-        private readonly WszystkieLinie wl = new WszystkieLinie();
+        RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        WszystkieLinie wl = new WszystkieLinie();
 
         public DodajLinie(WszystkieLinie wl)
         {
@@ -40,55 +39,49 @@ namespace crudapp
             System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // relacjeViewSource.Source = [generic data source]
+            crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
+            // Load data into the table relacje. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter rozkladJazdyKMDataSetrelacjeTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter();
+            rozkladJazdyKMDataSetrelacjeTableAdapter.Fill(rozkladJazdyKMDataSet.relacje);
+
+            var query =
+                from relacje in bazaDanych.relacje
+                select new { relacje.idrelacji, relacje.numerlinii, relacje.idpierwszegoprzystanku, relacje.idostatniegoprzystanku };
+
+            relacjeDataGrid.ItemsSource = query.ToList();
         }
 
         private void AddAndSaveButton_Click(object sender, EventArgs e)
         {
-            //DataRow dr = dt.NewRow();
-
-            //dr["idrelacji"] = int.Parse(idrelacjiTextBox.Text);
-            //dr["numerlinii"] = int.Parse(numerliniiTextBox.Text);
-            //dr["idostatniegoprzystanku"] = int.Parse(idostatniegoprzystankuTextBox.Text);
-            //dr["idpierwszegoprzystanku"] = int.Parse(idpierwszegoprzystankuTextBox.Text);
-            //dt.Rows.Add(dr);
-
-            
-            ushort idOP = Convert.ToUInt16(idostatniegoprzystankuTextBox.Text);
-            ushort idPP = Convert.ToUInt16(idpierwszegoprzystankuTextBox.Text);
-            ushort idR = Convert.ToUInt16(idrelacjiTextBox.Text);
-            ushort numerLinii = Convert.ToUInt16(numerliniiTextBox.Text);
-            string query = "INSERT INTO relacje " +
-                "VALUES(@idOP, @idPP, @idR , @numerLinii";
-            using (SqlConnection connection = new SqlConnection("Data Source=(localDB)\\MSSQLLocalDB;Initial Catalog=RozkladJazdyKM;Integrated Security=SSPI"))
+            if (idrelacjiTextBox.Text == String.Empty ||
+                 numerliniiTextBox.Text == String.Empty ||
+                 idpierwszegoprzystankuTextBox.Text == String.Empty ||
+                 idostatniegoprzystankuTextBox.Text == String.Empty)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add("@idOP", SqlDbType.SmallInt).Value = idOP;
-                command.Parameters.Add("@idPP", SqlDbType.SmallInt).Value = idPP;
-                command.Parameters.Add("@idR", SqlDbType.SmallInt).Value = idR;
-                command.Parameters.Add("@numerLinii", SqlDbType.SmallInt).Value = numerLinii;
-                command.CommandType = CommandType.Text;
-
-                try
-                {
-
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Dodano nową linię");
-                }
-                catch (SqlException exception)
-                {
-                    MessageBox.Show("Błąd: " + exception);
-                }
-                finally
-                {
-                    if (connection != null)
-                        connection.Close();
-                }
+                MessageBox.Show("Uzupełnij wszystkie pola");
             }
-            
+            else
+            {
+                relacje nowaRelacja = new relacje()
+                {
+                    idrelacji = (short)Convert.ToInt16(idrelacjiTextBox.Text),
+                    numerlinii = (short)Convert.ToInt16(numerliniiTextBox.Text),
+                    idpierwszegoprzystanku = (short)Convert.ToInt16(idpierwszegoprzystankuTextBox.Text),
+                    idostatniegoprzystanku = (short)Convert.ToInt16(idostatniegoprzystankuTextBox.Text)
+                };
 
+                bazaDanych.relacje.Add(nowaRelacja);
+                bazaDanych.SaveChanges();
 
+                relacjeDataGrid.ItemsSource = bazaDanych.relacje.ToList();
 
+                idrelacjiTextBox.Text = String.Empty;
+                numerliniiTextBox.Text = String.Empty;
+                idpierwszegoprzystankuTextBox.Text = String.Empty;
+                idostatniegoprzystankuTextBox.Text = String.Empty;
+
+            }
+          
         }
 
         // checks if input has only numbers
@@ -100,22 +93,13 @@ namespace crudapp
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void AddCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-           
-        }
-
-        private void CancelCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            idostatniegoprzystankuTextBox.Text = "";
-            idpierwszegoprzystankuTextBox.Text = "";
-            numerliniiTextBox.Text = "";
-            idrelacjiTextBox.Text = "";
+            idrelacjiTextBox.Text = String.Empty;
+            numerliniiTextBox.Text = String.Empty;
+            idpierwszegoprzystankuTextBox.Text = String.Empty;
+            idostatniegoprzystankuTextBox.Text = String.Empty;
 
             this.Close();
         }
+
     }
 }

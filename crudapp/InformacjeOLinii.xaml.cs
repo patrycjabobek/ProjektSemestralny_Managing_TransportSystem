@@ -28,6 +28,7 @@ namespace crudapp
         {
             InitializeComponent();
 
+            titleTextBox.Text = number;
             string idRelacji;
             idRelacji = $"idrelacji={Convert.ToUInt16(number)}";
             DataRow[] drRelacje = dtRelacje.Select(idRelacji);
@@ -53,20 +54,30 @@ namespace crudapp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // relacjeViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource rodzajeliniiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rodzajeliniiViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // rodzajeliniiViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource dniViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("dniViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // dniViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource czasyodjazdowViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("czasyodjazdowViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // czasyodjazdowViewSource.Source = [generic data source]
-
            
+
+
+            crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
+            // Load data into the table relacje. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter rozkladJazdyKMDataSetrelacjeTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter();
+            rozkladJazdyKMDataSetrelacjeTableAdapter.Fill(rozkladJazdyKMDataSet.relacje);
+            System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
+            relacjeViewSource.View.MoveCurrentToFirst();
+            // Load data into the table dni. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.dniTableAdapter rozkladJazdyKMDataSetdniTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.dniTableAdapter();
+            rozkladJazdyKMDataSetdniTableAdapter.Fill(rozkladJazdyKMDataSet.dni);
+            System.Windows.Data.CollectionViewSource dniViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("dniViewSource")));
+            dniViewSource.View.MoveCurrentToFirst();
+            // Load data into the table przejazdy. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przejazdyTableAdapter rozkladJazdyKMDataSetprzejazdyTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przejazdyTableAdapter();
+            rozkladJazdyKMDataSetprzejazdyTableAdapter.Fill(rozkladJazdyKMDataSet.przejazdy);
+            System.Windows.Data.CollectionViewSource relacjeprzejazdyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeprzejazdyViewSource")));
+            relacjeprzejazdyViewSource.View.MoveCurrentToFirst();
+            // Load data into the table rodzajelinii. You can modify this code as needed.
+            crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.rodzajeliniiTableAdapter rozkladJazdyKMDataSetrodzajeliniiTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.rodzajeliniiTableAdapter();
+            rozkladJazdyKMDataSetrodzajeliniiTableAdapter.Fill(rozkladJazdyKMDataSet.rodzajelinii);
+            System.Windows.Data.CollectionViewSource rodzajeliniiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rodzajeliniiViewSource")));
+            rodzajeliniiViewSource.View.MoveCurrentToFirst();
         }
 
 

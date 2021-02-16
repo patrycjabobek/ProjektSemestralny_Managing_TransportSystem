@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="024d8cb2212d485e889bb8f7fffaa258" Name="Diagram1">
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.czasyodjazdow" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.dni" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.przejazdy" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.przystanki" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.relacje" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.rodzajelinii" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RozkladJazdyKMModel1.Uzytkownik" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.czasyodjazdow_dni_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.czasyodjazdow_idprzejazdu_fkey1" ManuallyRouted="false" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.przejazdy_idprzystanku_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.przejazdy_idrelacji_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.relacje_idostatniegoprzystanku_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.relacje_idpierwszegoprzystanku_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="RozkladJazdyKMModel1.relacje_numerlinii_fkey" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
