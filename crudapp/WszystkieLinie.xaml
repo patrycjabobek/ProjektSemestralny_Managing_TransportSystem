@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:crudapp"
         xmlns:BazaDanych="clr-namespace:crudapp.BazaDanych" x:Class="crudapp.WszystkieLinie"
         mc:Ignorable="d"
-        Title="Wszystkie Linie" Height="750" Width="1100" ResizeMode="NoResize" Background="DarkSeaGreen" Loaded="Window_Loaded">
+        Title="Wszystkie Linie" Height="750" Width="1100" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Window.Resources>
         <BazaDanych:RozkladJazdyKMDataSet x:Key="rozkladJazdyKMDataSet"/>
@@ -15,19 +15,20 @@
         <CollectionViewSource x:Key="przystankiViewSource" Source="{Binding przystanki, Source={StaticResource rozkladJazdyKMDataSet}}"/>
     </Window.Resources>
 
-    <Border Padding="10" Background="YellowGreen" BorderThickness="0,0,15,0">
+    <Border Padding="10" Background="#cd5555" >
         <Grid>
-            <StackPanel Margin="10" TextElement.Foreground="DarkSlateGray" DataContext="{StaticResource relacjeViewSource}">
+            <Rectangle Fill="#36648b" Margin="-10,160,-9.8,-10.6"/>
+            <StackPanel Margin="10" TextElement.Foreground="white" DataContext="{StaticResource relacjeViewSource}">
                 <TextBlock Text="Wszystkie linie, ich przejazdy" FontSize="25" FontWeight="DemiBold"/>
                 <TextBlock Text="oraz przystanki" FontSize="20" FontWeight="DemiBold"/>
-                <Label Content="Numery linii:" Foreground="DarkSlateGray" FontSize="18" Margin="0"/>
+                <Label Content="Numery linii:" Foreground="white" FontSize="18" Margin="0"/>
                 <TextBlock FontSize="15"><Run Text="1 - tramwajowa | 2 - autobusowa miejska | 3 - autobusowa aglomeracyjna | 4 - autobusowa aglomeracyjna przyspieszona"/></TextBlock>
                 <TextBlock FontSize="15"><Run Text="5 - autobusowa miejska przyspieszona | 6 - autobusowa miejskia nocna | 7 - aglomeracyjna nocna"/></TextBlock>
             </StackPanel>
-            <Button Name="BtnDodajPrzejazd" Content="DODAJ NOWY PRZEJAZD" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="207" Height="29" Click="BtnDodajPrzejazd_Click" Background="MintCream" FontSize="15"/>
-            <Button Name="BtnDodajPrzystanek" Content="DODAJ NOWY PRZYSTANEK" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top" Width="206" Height="29" Click="BtnDodajPrzystanek_Click"  Background="MintCream"  FontSize="15"/>
-            <Button Name="BtnDodajLinie" Content="DODAJ NOWĄ LINIĘ"  Click="BtnDodajLinie_Click"  HorizontalAlignment="Left" Margin="868,9,0,0" VerticalAlignment="Top" Width="180" Height="30"  Background="MintCream"  FontSize="15"/>
-            <Button Content="WYJDŹ" HorizontalAlignment="Left" Margin="868,44,0,0" VerticalAlignment="Top" Width="180" Height="26" Click="LeaveBtn_Click"  Background="MintCream"  FontSize="15"/>
+            <Button Name="BtnDodajPrzejazd" Content="DODAJ NOWY PRZEJAZD" Foreground="White" HorizontalAlignment="Left" Margin="656,10,0,0" VerticalAlignment="Top" Width="207" Height="29" Click="BtnDodajPrzejazd_Click" Background="#27408b" FontSize="15"/>
+            <Button Name="BtnDodajPrzystanek" Content="DODAJ NOWY PRZYSTANEK" Foreground="White" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top" Width="206" Height="29" Click="BtnDodajPrzystanek_Click"  Background="#27408b"  FontSize="15"/>
+            <Button Name="BtnDodajLinie" Content="DODAJ NOWĄ LINIĘ" Foreground="White"  Click="BtnDodajLinie_Click"  HorizontalAlignment="Left" Margin="868,9,0,0" VerticalAlignment="Top" Width="180" Height="30"  Background="#27408b"  FontSize="15"/>
+            <Button Content="WYJDŹ" HorizontalAlignment="Left" Foreground="White" Margin="868,44,0,0" VerticalAlignment="Top" Width="180" Height="26" Click="LeaveBtn_Click"  Background="#27408b"  FontSize="15"/>
             <DataGrid x:Name="relacjeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,195,618.4,9.8" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idrelacjiColumn" Binding="{Binding idrelacji}" Header="idrelacji" Width="SizeToHeader"/>
@@ -38,15 +39,15 @@
             </DataGrid>
             <DataGrid x:Name="przejazdyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource przejazdyViewSource}}" Margin="445,195,303.4,9.8" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="idprzejazduColumn" Binding="{Binding idprzejazdu}" Header="idprzejazdu" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="idrelacjiColumn1" Binding="{Binding idrelacji}" Header="idrelacji" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="idprzejazduColumn" Binding="{Binding idprzejazdu}" Header="idprzejazdu" Width="100"/>
+                    <DataGridTextColumn x:Name="idrelacjiColumn1" Binding="{Binding idrelacji}" Header="idrelacji" Width="100"/>
+                    <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="100"/>
                 </DataGrid.Columns>
             </DataGrid>
             <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource przystankiViewSource}}" Margin="760,195,10.4,9.8" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="idprzystankuColumn1" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="idprzystankuColumn1" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="100"/>
+                    <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="190"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

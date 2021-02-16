@@ -93,6 +93,12 @@
     <Compile Include="BazaDanych\dni.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CzasyOdjazdow.xaml.cs">
+      <DependentUpon>CzasyOdjazdow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dni.xaml.cs">
+      <DependentUpon>Dni.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DodajLinie.xaml.cs">
       <DependentUpon>DodajLinie.xaml</DependentUpon>
     </Compile>
@@ -143,9 +149,20 @@
     <Compile Include="BazaDanych\Uzytkownik.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="RodzajeLinii.xaml.cs">
+      <DependentUpon>RodzajeLinii.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WszystkieLinie.xaml.cs">
       <DependentUpon>WszystkieLinie.xaml</DependentUpon>
     </Compile>
+    <Page Include="CzasyOdjazdow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dni.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DodajLinie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +195,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RodzajeLinii.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WszystkieLinie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

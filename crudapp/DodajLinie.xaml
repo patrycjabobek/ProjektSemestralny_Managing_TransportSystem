@@ -12,46 +12,50 @@
         <CollectionViewSource x:Key="relacjeViewSource" Source="{Binding relacje, Source={StaticResource rozkladJazdyKMDataSet}}"/>
     </Window.Resources>
 
-    <Grid DataContext="{StaticResource ResourceKey=relacjeViewSource}" Margin="0,0,0.2,6.2">
-        <TextBlock Text="Dodaj nową linię (relację)" Margin="15,15,15.4,210" FontSize="15" FontWeight="DemiBold"/>
-        <Grid x:Name="dodaj" DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="142" Width="324">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7.342"/>
-                <ColumnDefinition Width="123.858"/>
-                <ColumnDefinition Width="18.4"/>
-                <ColumnDefinition Width="Auto" MinWidth="173.6"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="ID ostatniegoprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="25" Width="141"/>
-            <TextBox x:Name="idostatniegoprzystankuTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="4.6,4,0,8" Grid.Row="0" Text="{Binding idostatniegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID pierwszegoprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,6" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="26" Width="144"/>
-            <TextBox x:Name="idpierwszegoprzystankuTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="4.6,5,0,7" Grid.Row="1" Text="{Binding idpierwszegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID relacji:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4.2" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="58"/>
-            <TextBox x:Name="idrelacjiTextBox" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="24" Margin="4.6,6,0,5.2" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Numer linii:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.8,0,3.4" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="70"/>
-            <TextBox x:Name="numerliniiTextBox" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="24" Margin="4.6,6.8,0,4.4" Grid.Row="3" Text="{Binding numerlinii, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+    <Border Background="#cd5555">
+        <Grid DataContext="{StaticResource ResourceKey=relacjeViewSource}" Margin="0,0,0.2,6.2">
+            <Rectangle Fill="#36648b" Margin="0,49,0.4,-8"/>
+            <TextBlock Text="Dodaj nową linię (relację)" Foreground="White" Margin="15,15,15.4,210" FontSize="15" FontWeight="DemiBold"/>
+            <Grid x:Name="dodaj" DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="142" Width="324">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7.342"/>
+                    <ColumnDefinition Width="123.858"/>
+                    <ColumnDefinition Width="18.4"/>
+                    <ColumnDefinition Width="Auto" MinWidth="173.6"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="ID ostatniegoprzystanku:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="25" Width="141"/>
+                <TextBox x:Name="idostatniegoprzystankuTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="4.6,4,0,8" Grid.Row="0" Text="{Binding idostatniegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="ID pierwszegoprzystanku:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,6" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="26" Width="144"/>
+                <TextBox x:Name="idpierwszegoprzystankuTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="4.6,5,0,7" Grid.Row="1" Text="{Binding idpierwszegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <Label Content="ID relacji:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,4.2" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="58"/>
+                <TextBox x:Name="idrelacjiTextBox" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="24" Margin="4.6,6,0,5.2" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
+                <Label Content="Numer linii:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5.8,0,3.4" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="70"/>
+                <TextBox x:Name="numerliniiTextBox" Grid.Column="3" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="24" Margin="4.6,6.8,0,4.4" Grid.Row="3" Text="{Binding numerlinii, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            </Grid>
+            <Button x:Name="btnCancel" Background="#27408b" FontSize="15" Click="CancelButton_Click" Foreground="White" Content="Anuluj" HorizontalAlignment="Left" Margin="343,61,0,0" VerticalAlignment="Top" Width="117"  Height="31"/>
+            <Button x:Name="btnSave" Background="#27408b" FontSize="15" Click="AddAndSaveButton_Click" Foreground="White" Content="Dodaj i zapisz" HorizontalAlignment="Left" Margin="343,10,0,0" VerticalAlignment="Top" Width="117"  Height="34"/>
+            <DataGrid x:Name="relacjeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,203,15,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idrelacjiColumn" Binding="{Binding idrelacji}" Header="idrelacji" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="numerliniiColumn" Binding="{Binding numerlinii}" Header="numerlinii" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="idpierwszegoprzystankuColumn" Binding="{Binding idpierwszegoprzystanku}" Header="idpierwszegoprzystanku" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="idostatniegoprzystankuColumn" Binding="{Binding idostatniegoprzystanku}" Header="idostatniegoprzystanku" Width="SizeToHeader"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="DeleteRow_Click" Width="50"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-        <Button x:Name="btnCancel" Click="CancelButton_Click" Content="Anuluj" HorizontalAlignment="Left" Margin="356,61,0,0" VerticalAlignment="Top" Width="104"  Height="31"/>
-        <Button x:Name="btnSave" Click="AddAndSaveButton_Click" Content="Dodaj i zapisz" HorizontalAlignment="Left" Margin="356,15,0,0" VerticalAlignment="Top" Width="104"  Height="30"/>
-        <DataGrid x:Name="relacjeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,203,15,10" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idrelacjiColumn" Binding="{Binding idrelacji}" Header="idrelacji" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="numerliniiColumn" Binding="{Binding numerlinii}" Header="numerlinii" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="idpierwszegoprzystankuColumn" Binding="{Binding idpierwszegoprzystanku}" Header="idpierwszegoprzystanku" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="idostatniegoprzystankuColumn" Binding="{Binding idostatniegoprzystanku}" Header="idostatniegoprzystanku" Width="SizeToHeader"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Delete" Click="DeleteRow_Click"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+    </Border>
+
 </Window>

@@ -49,7 +49,7 @@ namespace crudapp
                     }
                     else
                     {
-                        MessageBox.Show("Nazwa uzytkownika lub hasło jest nieprawidłowe");
+                        MessageBox.Show("Nazwa uzytkownika lub hasło są nieprawidłowe");
                     }
                     
                 }

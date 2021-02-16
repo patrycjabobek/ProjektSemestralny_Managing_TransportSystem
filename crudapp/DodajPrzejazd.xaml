@@ -11,11 +11,12 @@
         <BazaDanych:RozkladJazdyKMDataSet x:Key="rozkladJazdyKMDataSet"/>
         <CollectionViewSource x:Key="przejazdyViewSource" Source="{Binding przejazdy, Source={StaticResource rozkladJazdyKMDataSet}}"/>
     </Window.Resources>
-    <Border Background="YellowGreen" Padding="10" BorderThickness="0,0,15,0">
-        <Grid  TextElement.Foreground="DarkSlateGray" DataContext="{StaticResource przejazdyViewSource}">
-            <Label Content="Dodaj przejazd" FontSize="20" Margin="0,0,0,306.4"/>
-            <Button Click="AddAndSaveButton_Click" Content="Dodaj i zapisz" FontSize="15" HorizontalAlignment="Left" Margin="274,10,0,0" VerticalAlignment="Top" Width="124" Height="44"/>
-            <Button x:Name="btnCancel" Click="CancelButton_Click" Content="Anuluj" HorizontalAlignment="Left" Margin="274,59,0,0" VerticalAlignment="Top" Width="124" FontSize="15"  Height="35"/>
+    <Border Background="#cd5555" Padding="10" >
+        <Grid DataContext="{StaticResource przejazdyViewSource}">
+            <Rectangle Fill="#36648b" Margin="-10,49,-9.8,-10.6"/>
+            <Label Content="Dodaj przejazd" Foreground="white" FontSize="20" Margin="0,0,0.2,306.4"/>
+            <Button Click="AddAndSaveButton_Click" Background="#27408b" Foreground="white" Content="Dodaj i zapisz" FontSize="15" HorizontalAlignment="Left" Margin="274,10,0,0" VerticalAlignment="Top" Width="124" Height="34"/>
+            <Button x:Name="btnCancel" Background="#27408b" Foreground="white" Click="CancelButton_Click" Content="Anuluj" HorizontalAlignment="Left" Margin="274,59,0,0" VerticalAlignment="Top" Width="124" FontSize="15"  Height="35"/>
             <DataGrid CanUserResizeRows="False" x:Name="przejazdyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="0,150,10,0.4" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idprzejazduColumn" Binding="{Binding idprzejazdu}" Header="idprzejazdu" Width="80"/>
@@ -40,11 +41,11 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="idprzejazdu:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <Label Content="idprzejazdu:" Foreground="white" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="idprzejazduTextBox" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding idprzejazdu, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label Content="idrelacji:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <Label Content="idrelacji:" Foreground="white" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <TextBox x:Name="idrelacjiTextBox" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding idrelacji, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-                <Label Content="idprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <Label Content="idprzystanku:" Foreground="white" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
                 <TextBox x:Name="idprzystankuTextBox" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding idprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
         </Grid>

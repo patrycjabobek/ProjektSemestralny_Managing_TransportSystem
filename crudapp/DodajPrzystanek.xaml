@@ -11,29 +11,29 @@
         <BazaDanych:RozkladJazdyKMDataSet x:Key="rozkladJazdyKMDataSet"/>
         <CollectionViewSource x:Key="przystankiViewSource" Source="{Binding przystanki, Source={StaticResource rozkladJazdyKMDataSet}}"/>
     </Window.Resources>
-    <Border Padding="10" Background="YellowGreen" BorderThickness="0,0,15,0">
+    <Border Padding="10" Background="#cd5555">
         <Grid  Margin="0,0,0.2,-5.6" DataContext="{StaticResource przystankiViewSource}">
-        <TextBlock Text="{Binding}" Margin="15,15,15.2,328.4" FontSize="15" FontWeight="DemiBold"/>
-
-        <Button Click="AddAndSaveButton_Click" Content="Dodaj i zapisz" HorizontalAlignment="Left" Margin="294,8,0,0" VerticalAlignment="Top" Width="104" Height="35"/>
-        <Grid x:Name="grid1" DataContext="{StaticResource przystankiViewSource}" HorizontalAlignment="Left" Margin="15,48,0,0" VerticalAlignment="Top" Height="83" Width="245">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="idprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding}" Margin="15,15,15.2,328.4" FontSize="15" FontWeight="DemiBold"/>
+            <Rectangle Fill="#36648b" Margin="-10,49,-9.8,-10.6"/>
+            <Button Click="AddAndSaveButton_Click" Background="#27408b" FontSize="15" Foreground="White" Content="Dodaj i zapisz" HorizontalAlignment="Left" Margin="283,8,0,0" VerticalAlignment="Top" Width="115" Height="35"/>
+            <Grid x:Name="grid1" DataContext="{StaticResource przystankiViewSource}" HorizontalAlignment="Left" Margin="15,56,0,0" VerticalAlignment="Top" Height="83" Width="245">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="idprzystanku:" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="idprzystankuTextBox" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding idprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="nazwa:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="nazwaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding nazwa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        </Grid>
-        <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,150,9.8,26" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="200"/>
+                <Label Content="nazwa:" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="nazwaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding nazwa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            </Grid>
+            <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,150,9.8,26" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="200"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -42,10 +42,10 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
-        </DataGrid>
-            <Button Content="Anuluj" HorizontalAlignment="Left" Margin="294,54,0,0" VerticalAlignment="Top" Width="104" Height="28" Click="Cancel_Click"/>
-            <Label Content="Dodaj przystanek" HorizontalAlignment="Left" Margin="15,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.578,-0.07" FontSize="20" Height="40"/>
+            </DataGrid>
+            <Button Content="Anuluj" Background="#27408b" FontSize="15" Foreground="White" HorizontalAlignment="Left" Margin="283,54,0,0" VerticalAlignment="Top" Width="115" Height="32" Click="Cancel_Click"/>
+            <Label Content="Dodaj przystanek" Foreground="White" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.578,-0.07" FontSize="20" Height="40"/>
         </Grid>
     </Border>
-    
+
 </Window>

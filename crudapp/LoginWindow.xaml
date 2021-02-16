@@ -5,15 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
-        Title="Logowanie" Height="450" Width="500" Background="Gray">
-    <Grid>
-        <StackPanel Margin="20">
-            <Label Content="ZALOGUJ SIE" Foreground="white" FontSize="25" HorizontalAlignment="Center"/>
-            <Label Content="Nazwa Użytkownika" Foreground="white" FontSize="20" Margin="0,0,-0.4,0" HorizontalAlignment="Right" Width="444"/>
-            <TextBox Name="NazwaUzytkownika_Box" Background="#545d6a"  FontSize="18" Margin="10,0,9.6,0" Height="44"/>
-            <Label Content="Hasło" FontSize="20" Foreground="white" Margin="10,0,-0.4,0"/>
-            <PasswordBox Name="Haslo_PasswordBox" Background="#545d6a"  FontSize="18" Margin="10,0,9.6,0" Height="40"/>
-            <Button x:Name="Zaloguj_Button" Click="Zaloguj_Button_Click" Content="ZALOGUJ SIĘ" Margin="76,10,75.6,10" Background="#545d6a" Foreground="White" FontSize="18" Height="50"/>
-        </StackPanel>
-    </Grid>
+        Title="Logowanie - Rozkład Jazdy Komunikacji Miejskiej BAZA DANYCH" Height="450" Width="500" ResizeMode="NoResize">
+    <Border Padding="10"  Background="#cd5555" Margin="0,0,0,0">
+        <Grid>
+            <Rectangle Fill="#36648b" Margin="-10,86,-10,-14"/>
+            <Label Content="WITAMY" Foreground="White" FontSize="40" />
+            <Label Content="w bazie danych komunikacji miejskiej RJKM" Foreground="white" FontSize="15" Margin="0,50,-0.4,314"/>
+            <Label Content="ZALOGUJ SIĘ" Foreground="white" FontSize="25" HorizontalAlignment="Center" Margin="159,101,154.6,253" Width="160"/>
+            <Label Content="Nazwa użytkownika" Foreground="white" FontSize="20" Margin="0,147,19.6,212" HorizontalAlignment="Right" Width="444">
+
+            </Label>
+            <TextBox Name="NazwaUzytkownika_Box" Background="white"  FontSize="18" Margin="9,193,10.6,163" Height="44"/>
+            <Label Content="Hasło" FontSize="20" Foreground="white" Margin="9,236,0.6,120" RenderTransformOrigin="0.5,0.5">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-0.228"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-0.796"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <PasswordBox Name="Haslo_PasswordBox" Background="white"  FontSize="18" Margin="10,274,9.6,86" Height="40"/>
+            <Button x:Name="Zaloguj_Button" Click="Zaloguj_Button_Click" Content="ZALOGUJ SIĘ" Margin="76,340,75.6,10" Background="#27408b" Foreground="White" FontSize="18" Height="50"/>
+
+        </Grid>
+    </Border>
+
 </Window>

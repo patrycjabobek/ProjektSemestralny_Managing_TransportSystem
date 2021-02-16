@@ -41,6 +41,25 @@ namespace crudapp
             WszystkieLinie all = new WszystkieLinie();
             all.Show();
         }
+
+        private void ViewDeparturesButton_Click(object sender, RoutedEventArgs e)
+        {
+            CzasyOdjazdow window = new CzasyOdjazdow();
+            window.Show();
+        }
+
+
+        private void ViewDaysButton_Click(object sender, RoutedEventArgs e)
+        {
+            Dni window = new Dni();
+            window.Show();
+        }
+
+        private void ViewTypesOfTransportButton_Click(object sender, RoutedEventArgs e)
+        {
+            RodzajeLinii window = new RodzajeLinii();
+            window.Show();
+        }
     }
 
 }
