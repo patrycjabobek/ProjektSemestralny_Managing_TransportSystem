@@ -10,14 +10,14 @@
 namespace crudapp.BazaDanych
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class przejazdy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public przejazdy()
         {
-            this.czasyodjazdow = new ObservableCollection<czasyodjazdow>();
+            this.czasyodjazdow = new HashSet<czasyodjazdow>();
         }
     
         public short idprzejazdu { get; set; }
@@ -25,7 +25,7 @@ namespace crudapp.BazaDanych
         public Nullable<short> idprzystanku { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<czasyodjazdow> czasyodjazdow { get; set; }
+        public virtual ICollection<czasyodjazdow> czasyodjazdow { get; set; }
         public virtual przystanki przystanki { get; set; }
         public virtual relacje relacje { get; set; }
     }

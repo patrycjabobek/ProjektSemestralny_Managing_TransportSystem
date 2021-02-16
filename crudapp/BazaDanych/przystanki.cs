@@ -10,26 +10,26 @@
 namespace crudapp.BazaDanych
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class przystanki
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public przystanki()
         {
-            this.przejazdy = new ObservableCollection<przejazdy>();
-            this.relacje = new ObservableCollection<relacje>();
-            this.relacje1 = new ObservableCollection<relacje>();
+            this.przejazdy = new HashSet<przejazdy>();
+            this.relacje = new HashSet<relacje>();
+            this.relacje1 = new HashSet<relacje>();
         }
     
         public short idprzystanku { get; set; }
         public string nazwa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<przejazdy> przejazdy { get; set; }
+        public virtual ICollection<przejazdy> przejazdy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<relacje> relacje { get; set; }
+        public virtual ICollection<relacje> relacje { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<relacje> relacje1 { get; set; }
+        public virtual ICollection<relacje> relacje1 { get; set; }
     }
 }

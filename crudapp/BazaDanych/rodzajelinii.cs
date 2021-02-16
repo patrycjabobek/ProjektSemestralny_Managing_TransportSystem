@@ -10,20 +10,20 @@
 namespace crudapp.BazaDanych
 {
     using System;
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
     
     public partial class rodzajelinii
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public rodzajelinii()
         {
-            this.relacje = new ObservableCollection<relacje>();
+            this.relacje = new HashSet<relacje>();
         }
     
         public short numerlinii { get; set; }
         public string nazwa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<relacje> relacje { get; set; }
+        public virtual ICollection<relacje> relacje { get; set; }
     }
 }

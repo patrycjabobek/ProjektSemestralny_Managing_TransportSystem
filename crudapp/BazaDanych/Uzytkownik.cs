@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace crudapp
+namespace crudapp.BazaDanych
 {
     using System;
     using System.Collections.Generic;

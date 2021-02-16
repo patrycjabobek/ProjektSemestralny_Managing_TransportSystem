@@ -101,5 +101,14 @@ namespace crudapp
             this.Close();
         }
 
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            int relacjaId = (relacjeDataGrid.SelectedItem as relacje).idrelacji;
+            relacje relacje = (from r in bazaDanych.relacje where r.idrelacji == relacjaId select r).SingleOrDefault();
+            bazaDanych.relacje.Remove(relacje);
+            bazaDanych.SaveChanges();
+
+            relacjeDataGrid.ItemsSource = bazaDanych.relacje.ToList();
+        }
     }
 }

@@ -26,11 +26,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="idprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idprzystankuTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding idprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="idprzystankuTextBox" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding idprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="nazwa:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="nazwaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding nazwa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,150,28,26" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,150,9.8,26" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="200"/>
@@ -43,7 +43,7 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
         </DataGrid>
-            <Button Content="Anuluj" HorizontalAlignment="Left" Margin="294,54,0,0" VerticalAlignment="Top" Width="104" Height="28"/>
+            <Button Content="Anuluj" HorizontalAlignment="Left" Margin="294,54,0,0" VerticalAlignment="Top" Width="104" Height="28" Click="Cancel_Click"/>
             <Label Content="Dodaj przystanek" HorizontalAlignment="Left" Margin="15,8,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.578,-0.07" FontSize="20" Height="40"/>
         </Grid>
     </Border>

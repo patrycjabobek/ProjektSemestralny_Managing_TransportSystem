@@ -1,4 +1,5 @@
-﻿using System;
+﻿using crudapp.BazaDanych;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace crudapp
     /// </summary>
     public partial class InformacjeOLinii : Window
     {
-        //private readonly RozkladJazdyKMEntities dataEntities = new RozkladJazdyKMEntities();
+        readonly RozkladJazdyKMEntities1 dataEntities = new RozkladJazdyKMEntities1();
         private readonly DataTable dtRelacje = new DataTable("relacje");
         private readonly DataTable dtDni = new DataTable("dni");
         //private readonly DataTable dtPrzejazdy = new DataTable("przejazdy");
@@ -48,15 +49,10 @@ namespace crudapp
                 tydzienTextBox.Text = row["tydzien"].ToString();
 
             }
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-           
-
-
+        {        
             crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
             // Load data into the table relacje. You can modify this code as needed.
             crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter rozkladJazdyKMDataSetrelacjeTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.relacjeTableAdapter();

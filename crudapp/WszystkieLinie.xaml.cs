@@ -34,19 +34,19 @@ namespace crudapp
         {
             var query =
                  from relacja in dataEntities.relacje
-                 select new { relacja.idrelacji, relacja.numerlinii, relacja.idpierwszegoprzystanku, relacja.idostatniegoprzystanku };
+                 select relacja;
 
             relacjeDataGrid.ItemsSource = query.ToList();
 
             var query2 =
                 from przejazd in dataEntities.przejazdy
-                select new { przejazd.idprzejazdu, przejazd.idprzystanku, przejazd.idrelacji };
+                select przejazd;
 
             przejazdyDataGrid.ItemsSource = query2.ToList();
 
             var query3 =
                 from przystanek in dataEntities.przystanki
-                select new { przystanek.idprzystanku, przystanek.nazwa };
+                select przystanek;
 
             przystankiDataGrid.ItemsSource = query3.ToList();
 
