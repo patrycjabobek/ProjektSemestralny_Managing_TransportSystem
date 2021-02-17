@@ -7,4 +7,5 @@ Jak zacząć?
 2. Zainstaluj aplikację.
 3. Otwórz aplikację.
 4. Zaloguj się:
+
 	i.podaj login i hasło : login: uzytkownik; hasło: 123
