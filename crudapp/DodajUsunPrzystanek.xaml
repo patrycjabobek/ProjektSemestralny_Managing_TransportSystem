@@ -8,10 +8,14 @@
         mc:Ignorable="d"
         Title="Dodaj Przystanek" Height="400" Width="450" ResizeMode="NoResize" Loaded="Window_Loaded" Background="DarkSeaGreen">
     <Window.Resources>
+        <RoutedUICommand x:Key="DeleteCommand" Text="Usuń"/>
         <BazaDanych:RozkladJazdyKMDataSet x:Key="rozkladJazdyKMDataSet"/>
         <CollectionViewSource x:Key="przystankiViewSource" Source="{Binding przystanki, Source={StaticResource rozkladJazdyKMDataSet}}"/>
     </Window.Resources>
-    <Border Padding="10" Background="#cd5555">
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource DeleteCommand}" Executed="DeleteCommandHandler"/>
+    </Window.CommandBindings>
+    <Border Padding="10" Background="#cd8462">
         <Grid  Margin="0,0,0.2,-5.6" DataContext="{StaticResource przystankiViewSource}">
             <TextBlock Text="{Binding}" Margin="15,15,15.2,328.4" FontSize="15" FontWeight="DemiBold"/>
             <Rectangle Fill="#36648b" Margin="-10,49,-9.8,-10.6"/>
@@ -30,14 +34,14 @@
                 <Label Content="nazwa:" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <TextBox x:Name="nazwaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding nazwa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
-            <DataGrid x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,150,9.8,26" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid CanUserAddRows="True" x:Name="przystankiDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="15,150,9.8,26" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idprzystankuColumn" Binding="{Binding idprzystanku}" Header="idprzystanku" Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="nazwaColumn" Binding="{Binding nazwa}" Header="nazwa" Width="200"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Width="80"/>
+                                <Button Content="Usuń" Command="{StaticResource DeleteCommand}" CommandParameter="{Binding}" Width="80"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

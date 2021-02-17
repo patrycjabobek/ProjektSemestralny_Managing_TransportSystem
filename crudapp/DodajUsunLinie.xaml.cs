@@ -24,19 +24,17 @@ namespace crudapp
     /// </summary>
     public partial class DodajLinie : Window
     {
-        RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
-        WszystkieLinie wl = new WszystkieLinie();
-
-        public DodajLinie(WszystkieLinie wl)
+        readonly RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        System.Windows.Data.CollectionViewSource relacjeViewSource;
+        public DodajLinie()
         {
             InitializeComponent();
-            this.wl = wl;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
+            relacjeViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("relacjeViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // relacjeViewSource.Source = [generic data source]
             crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
@@ -84,6 +82,7 @@ namespace crudapp
           
         }
 
+
         // checks if input has only numbers
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -101,14 +100,32 @@ namespace crudapp
             this.Close();
         }
 
-        private void DeleteRow_Click(object sender, RoutedEventArgs e)
-        {
-            int relacjaId = (relacjeDataGrid.SelectedItem as relacje).idrelacji;
-            relacje relacje = (from r in bazaDanych.relacje where r.idrelacji == relacjaId select r).SingleOrDefault();
-            bazaDanych.relacje.Remove(relacje);
-            bazaDanych.SaveChanges();
 
-            relacjeDataGrid.ItemsSource = bazaDanych.relacje.ToList();
+        private void DeleteRelacje(relacje relacje)
+        {
+            if (relacje != null)
+            {
+                var relacja = (from r in bazaDanych.relacje.Local
+                               where r.idrelacji == relacje.idrelacji
+                               select r).FirstOrDefault();
+
+                foreach (var item in relacja.przejazdy.ToList())
+                {
+                    bazaDanych.przejazdy.Remove(item);
+                }
+
+                bazaDanych.relacje.Remove(relacja);
+                bazaDanych.SaveChanges();
+
+                relacjeViewSource.View.Refresh();
+           }
+  
+        }
+
+        private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            relacje rel = e.Parameter as relacje;
+            DeleteRelacje(rel);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace crudapp
     public partial class DodajPrzystanek : Window
     {
         RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        System.Windows.Data.CollectionViewSource przystankiViewSource;
         public DodajPrzystanek()
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace crudapp
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            System.Windows.Data.CollectionViewSource przystankiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przystankiViewSource")));
+            przystankiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przystankiViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // przystankiViewSource.Source = [generic data source]
             crudapp.BazaDanych.RozkladJazdyKMDataSet rozkladJazdyKMDataSet = ((crudapp.BazaDanych.RozkladJazdyKMDataSet)(this.FindResource("rozkladJazdyKMDataSet")));
@@ -83,6 +84,38 @@ namespace crudapp
             nazwaTextBox.Text = String.Empty;
 
             this.Close();
+        }
+
+        private void DeletePrzystanek(przystanki przystanki)
+        {
+            //if (dni != null)
+            //{
+            var przystanek = (from p in bazaDanych.przystanki.Local
+                        where p.idprzystanku == przystanki.idprzystanku
+                        select p).FirstOrDefault();
+
+            foreach (var item in przystanek.relacje.ToList())
+            {
+                bazaDanych.relacje.Remove(item);
+            }
+
+            foreach (var item in przystanek.przejazdy.ToList())
+            {
+                bazaDanych.przejazdy.Remove(item);
+            }
+
+            bazaDanych.przystanki.Remove(przystanek);
+            bazaDanych.SaveChanges();
+
+            przystankiViewSource.View.Refresh();
+            //}
+
+        }
+
+        private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            przystanki p = e.Parameter as przystanki;
+            DeletePrzystanek(p);
         }
     }
 }

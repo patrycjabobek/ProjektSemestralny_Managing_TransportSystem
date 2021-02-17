@@ -10,14 +10,18 @@
     <Window.Resources>
         <BazaDanych:RozkladJazdyKMDataSet x:Key="rozkladJazdyKMDataSet"/>
         <CollectionViewSource x:Key="przejazdyViewSource" Source="{Binding przejazdy, Source={StaticResource rozkladJazdyKMDataSet}}"/>
+        <RoutedUICommand x:Key="DeleteCommand" Text="Usuń"/>
     </Window.Resources>
-    <Border Background="#cd5555" Padding="10" >
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource DeleteCommand}" Executed="DeleteCommandHandler"/>
+    </Window.CommandBindings>
+    <Border Background="#cd8462" Padding="10" >
         <Grid DataContext="{StaticResource przejazdyViewSource}">
             <Rectangle Fill="#36648b" Margin="-10,49,-9.8,-10.6"/>
             <Label Content="Dodaj przejazd" Foreground="white" FontSize="20" Margin="0,0,0.2,306.4"/>
             <Button Click="AddAndSaveButton_Click" Background="#27408b" Foreground="white" Content="Dodaj i zapisz" FontSize="15" HorizontalAlignment="Left" Margin="274,10,0,0" VerticalAlignment="Top" Width="124" Height="34"/>
             <Button x:Name="btnCancel" Background="#27408b" Foreground="white" Click="CancelButton_Click" Content="Anuluj" HorizontalAlignment="Left" Margin="274,59,0,0" VerticalAlignment="Top" Width="124" FontSize="15"  Height="35"/>
-            <DataGrid CanUserResizeRows="False" x:Name="przejazdyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="0,150,10,0.4" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid CanUserAddRows="True" CanUserResizeRows="False" x:Name="przejazdyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="0,150,10,0.4" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idprzejazduColumn" Binding="{Binding idprzejazdu}" Header="idprzejazdu" Width="80"/>
                     <DataGridTextColumn x:Name="idrelacjiColumn" Binding="{Binding idrelacji}" Header="idrelacji" Width="80"/>
@@ -25,7 +29,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Width="80" Click="DeleteRow_Click"/>
+                                <Button Content="Usuń"  Command="{StaticResource DeleteCommand}" CommandParameter="{Binding}" Width="80" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

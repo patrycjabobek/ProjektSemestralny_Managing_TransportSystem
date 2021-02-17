@@ -33,5 +33,14 @@ namespace crudapp.Properties {
                 return ((string)(this["RozkladJazdyKMConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        public string connString {
+            get {
+                return ((string)(this["connString"]));
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:crudapp"
         mc:Ignorable="d"
         Title="Logowanie - Rozkład Jazdy Komunikacji Miejskiej BAZA DANYCH" Height="450" Width="500" ResizeMode="NoResize">
-    <Border Padding="10"  Background="#cd5555" Margin="0,0,0,0">
+    <Border Padding="10"  Background="#cd8462" Margin="0,0,0,0">
         <Grid>
             <Rectangle Fill="#36648b" Margin="-10,86,-10,-14"/>
             <Label Content="WITAMY" Foreground="White" FontSize="40" />

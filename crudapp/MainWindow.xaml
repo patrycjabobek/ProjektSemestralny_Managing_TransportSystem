@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Rozkład Jazdy Komunikacji Miejskiej RJKM - Baza danych" Height="600" Width="800"  ResizeMode="NoResize">
 
-    <Border Padding="10" Background="#cd5555" >
-        <StackPanel TextElement.Foreground="White" Background="#cd5555" Margin="0.4,0.4,0.2,-10">
+    <Border Padding="10" Background="#cd8462" >
+        <StackPanel TextElement.Foreground="White" Background="#cd8462" Margin="0.4,0.4,0.2,-10">
 
             <Grid Margin="0 10 0 0">
                 <Grid.ColumnDefinitions>

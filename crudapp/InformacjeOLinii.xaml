@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:crudapp"
         xmlns:BazaDanych="clr-namespace:crudapp.BazaDanych" x:Class="crudapp.InformacjeOLinii"
         mc:Ignorable="d"
-        Title="RJKM - Informacje o linii" Height="380" Width="350" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="RJKM - Informacje o linii" Height="288.8" Width="350" Loaded="Window_Loaded"  ResizeMode="NoResize">
     <Window.Resources>
         <BazaDanych:RozkladJazdyKMDataSet x:Key="rozkladJazdyKMDataSet"/>
         <CollectionViewSource x:Key="relacjeViewSource" Source="{Binding relacje, Source={StaticResource rozkladJazdyKMDataSet}}"/>
@@ -14,10 +14,10 @@
         <CollectionViewSource x:Key="relacjeprzejazdyViewSource" Source="{Binding przejazdy_idrelacji_fkey, Source={StaticResource relacjeViewSource}}"/>
         <CollectionViewSource x:Key="rodzajeliniiViewSource" Source="{Binding rodzajelinii, Source={StaticResource rozkladJazdyKMDataSet}}"/>
     </Window.Resources>
-    <Border  Background="#36648b" Padding="10" >
+    <Border  Background="#36648b" Padding="10" Margin="0,0,0,-0.6" >
         <StackPanel   DataContext="{StaticResource relacjeprzejazdyViewSource}" Margin="0.4,0.4,-0.4,0">
 
-            <Grid Height="34" Background="#cd5555">
+            <Grid Height="34" Background="#cd8462">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -29,11 +29,11 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Label Content="Linia numer:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,10" FontSize="20" Foreground="White"/>
-                <TextBox Background="Transparent" x:Name="titleTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,-57,10.2" Width="65" IsReadOnly="False" BorderThickness="0" Foreground="White"/>
+                <TextBox Background="Transparent" x:Name="titleTextBox" HorizontalAlignment="Left" FontSize="25" Margin="119,0,-51.2,12.4" Width="65" IsReadOnly="False" BorderThickness="0" Foreground="White" Grid.ColumnSpan="2"/>
             </Grid>
 
 
-            <Grid x:Name="grid1" DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="304" Height="135">
+            <Grid x:Name="grid1"  DataContext="{StaticResource relacjeViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="304" Height="135">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="41.8"/>
@@ -46,47 +46,13 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Label Content="idrelacji:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,6,0,3.4" Grid.Row="0" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="idrelacjiTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,6,-26.8,5.4" Grid.Row="0" Text="{Binding idrelacji, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox IsReadOnly="True" x:Name="idrelacjiTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,6,-26.8,5.4" Grid.Row="0" Text="{Binding idrelacji, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                 <Label Content="numerlinii:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,4.6,0,3.8" Grid.Row="1" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="numerliniiTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,7.6,-26.8,3.8" Grid.Row="1" Text="{Binding numerlinii, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="numerliniiTextBox" IsReadOnly="True"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,7.6,-26.8,3.8" Grid.Row="1" Text="{Binding numerlinii, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                 <Label Content="idpierwszegoprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,1.2,0,5.6" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" Foreground="White"/>
-                <TextBox x:Name="idpierwszegoprzystankuTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,4.2,-26.8,5.6" Grid.Row="2" Text="{Binding idpierwszegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="idpierwszegoprzystankuTextBox" IsReadOnly="True"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,4.2,-26.8,5.6" Grid.Row="2" Text="{Binding idpierwszegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                 <Label Content="idostatniegoprzystanku:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,2.4,0,5.2" Grid.Row="3" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="idostatniegoprzystankuTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,4.4,-26.8,6.2" Grid.Row="3" Text="{Binding idostatniegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
-            </Grid>
-            <Grid x:Name="grid2" DataContext="{StaticResource dniViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="304">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Content="tydzien:" HorizontalAlignment="Left"  Foreground="White" Margin="0.2,3,0,3" VerticalAlignment="Center" Width="73" Grid.Column="1"/>
-                <TextBox x:Name="tydzienTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="172.2,3,-156.4,6" Text="{Binding tydzien, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="121"/>
-            </Grid>
-            <Grid x:Name="grid3" DataContext="{StaticResource dniViewSource}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="304" Height="26">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Content="czy nocny:" Grid.Column="0" Foreground="White" HorizontalAlignment="Right" Margin="0,0,10.8,3" Grid.Row="0" VerticalAlignment="Center" Width="68" Height="29" Grid.ColumnSpan="2"/>
-                <CheckBox x:Name="czynocnyCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding czynocny, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="166.4,8,-119.4,8" Grid.Row="0" VerticalAlignment="Center" Width="21"/>
-            </Grid>
-
-            <Grid x:Name="grid4" DataContext="{StaticResource rodzajeliniiViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="314">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Content="nazwa:" Grid.Column="0" HorizontalAlignment="Left"  Foreground="White" Margin="10,2,0,4" Grid.Row="0" VerticalAlignment="Center" RenderTransformOrigin="0.766,0.495" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="nazwaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="183.2,5,-175.2,4" Grid.Row="0" Text="{Binding nazwa, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="idostatniegoprzystankuTextBox" IsReadOnly="True"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37.2,4.4,-26.8,6.2" Grid.Row="3" Text="{Binding idostatniegoprzystanku, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
             </Grid>
             <Grid Height="69" Margin="0,0,-0.2,0">
                 <Grid.ColumnDefinitions>
@@ -100,9 +66,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image Source="/Images/public-transport.png"  Width="53" HorizontalAlignment="Left" Margin="7,0,0,0.6" Grid.ColumnSpan="3" RenderTransformOrigin="1.335,0.564"/>
-                <Image Source="/Images/tram.png"  Width="43"  HorizontalAlignment="Left" Grid.Column="2" Margin="52.4,1,-58.6,-0.4" Grid.RowSpan="4"/>
-                <Image Source="/Images/icons8-bus-100.png" Width="43" HorizontalAlignment="Left" RenderTransformOrigin="1.408,0.543" Grid.Column="2" Margin="95.2,10,-80.6,-0.4" Grid.RowSpan="4"/>
+                <Image Source="/Images/public-transport.png"  Width="67" HorizontalAlignment="Left" Margin="5.4,0,-8.4,-0.2" RenderTransformOrigin="1.335,0.564" Grid.Column="2" Grid.RowSpan="4"/>
+                <Image Source="/Images/tram.png"  Width="52"  HorizontalAlignment="Left" Grid.Column="2" Margin="72.4,1,-61.2,-12.2" Grid.RowSpan="4"/>
+                <Image Source="/Images/icons8-bus-100.png" Width="59" HorizontalAlignment="Left" RenderTransformOrigin="1.408,0.543" Grid.Column="2" Margin="113.4,10,-110,-12.2" Grid.RowSpan="4"/>
 
             </Grid>
 

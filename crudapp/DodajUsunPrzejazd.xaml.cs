@@ -22,6 +22,7 @@ namespace crudapp
     public partial class DodajPrzejazd : Window
     {
         readonly RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        System.Windows.Data.CollectionViewSource przejazdyViewSource;
         public DodajPrzejazd()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace crudapp
             // Load data into the table przejazdy. You can modify this code as needed.
             crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przejazdyTableAdapter rozkladJazdyKMDataSetprzejazdyTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.przejazdyTableAdapter();
             rozkladJazdyKMDataSetprzejazdyTableAdapter.Fill(rozkladJazdyKMDataSet.przejazdy);
-            System.Windows.Data.CollectionViewSource przejazdyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przejazdyViewSource")));
+            przejazdyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("przejazdyViewSource")));
             przejazdyViewSource.View.MoveCurrentToFirst();
 
             var query =
@@ -85,16 +86,34 @@ namespace crudapp
 
             this.Close();
         }
-        private void DeleteRow_Click(object sender, RoutedEventArgs e)
-        {
-            //int relacjaId = (relacjeDataGrid.SelectedItem as relacje).idrelacji;
-            //relacje relacje = (from r in bazaDanych.relacje where r.idrelacji == relacjaId select r).SingleOrDefault();
-            //bazaDanych.relacje.Remove(relacje);
-            //bazaDanych.SaveChanges();
 
-            //relacjeDataGrid.ItemsSource = bazaDanych.relacje.ToList();
+        private void DeletePrzejazd(przejazdy prz)
+        {
+            //if (dni != null)
+            //{
+            var przejazd = (from p in bazaDanych.przejazdy.Local
+                        where p.idprzejazdu == prz.idprzejazdu
+                            select p).FirstOrDefault();
+
+            foreach (var item in przejazd.czasyodjazdow.ToList())
+            {
+                bazaDanych.czasyodjazdow.Remove(item);
+            }
+
+            bazaDanych.przejazdy.Remove(przejazd);
+            bazaDanych.SaveChanges();
+
+            przejazdyViewSource.View.Refresh();
+            //}
+
         }
 
-        
+        private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            przejazdy p = e.Parameter as przejazdy;
+            DeletePrzejazd(p);
+        }
+
+
     }
 }

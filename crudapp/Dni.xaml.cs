@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace crudapp
     public partial class Dni : Window
     {
         RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        System.Windows.Data.CollectionViewSource dniViewSource;
         public Dni()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace crudapp
             // Load data into the table dni. You can modify this code as needed.
             crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.dniTableAdapter rozkladJazdyKMDataSetdniTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.dniTableAdapter();
             rozkladJazdyKMDataSetdniTableAdapter.Fill(rozkladJazdyKMDataSet.dni);
-            System.Windows.Data.CollectionViewSource dniViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("dniViewSource")));
+            dniViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("dniViewSource")));
             dniViewSource.View.MoveCurrentToFirst();
 
             var query =
@@ -60,7 +62,7 @@ namespace crudapp
                     czynocny = czynocnyCheckBox.IsChecked
                 };
 
-                bazaDanych.dni.Add(nowyDzienOdjazdow);
+                _ = bazaDanych.dni.Add(nowyDzienOdjazdow);
                 bazaDanych.SaveChanges();
 
                 dniDataGrid.ItemsSource = bazaDanych.dni.ToList();
@@ -72,6 +74,12 @@ namespace crudapp
 
         }
 
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             idDniTextBox.Text = String.Empty;
@@ -80,9 +88,33 @@ namespace crudapp
             this.Close();
         }
 
-        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        private void DeleteDzien(dni dni)
         {
+            //if (dni != null)
+            //{
+            var dzien = (from d in bazaDanych.dni.Local
+                           where d.idDni == dni.idDni
+                           select d).FirstOrDefault();
+
+            foreach (var item in dzien.czasyodjazdow.ToList())
+            {
+                bazaDanych.czasyodjazdow.Remove(item);
+            }
+
+            bazaDanych.dni.Remove(dzien);
+            bazaDanych.SaveChanges();
+
+            dniViewSource.View.Refresh();
+            //}
 
         }
+
+        private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            dni d = e.Parameter as dni;
+            DeleteDzien(d);
+        }
+
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace crudapp
     public partial class RodzajeLinii : Window
     {
         RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        System.Windows.Data.CollectionViewSource rodzajeliniiViewSource;
         public RodzajeLinii()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace crudapp
             // Load data into the table rodzajelinii. You can modify this code as needed.
             crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.rodzajeliniiTableAdapter rozkladJazdyKMDataSetrodzajeliniiTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.rodzajeliniiTableAdapter();
             rozkladJazdyKMDataSetrodzajeliniiTableAdapter.Fill(rozkladJazdyKMDataSet.rodzajelinii);
-            System.Windows.Data.CollectionViewSource rodzajeliniiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rodzajeliniiViewSource")));
+            rodzajeliniiViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("rodzajeliniiViewSource")));
             rodzajeliniiViewSource.View.MoveCurrentToFirst();
 
             var query =
@@ -49,6 +51,11 @@ namespace crudapp
             nazwaTextBox.Text = String.Empty;
 
             this.Close();
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void AddAndSaveButton_Click(object sender, RoutedEventArgs e)
@@ -80,8 +87,39 @@ namespace crudapp
 
         private void DeleteRow_Click(object sender, RoutedEventArgs e)
         {
-
+            int rodzajlinii = (rodzajeliniiDataGrid.SelectedItem as rodzajelinii).numerlinii;
+            rodzajelinii rodzaj = (from r in bazaDanych.rodzajelinii where r.numerlinii == rodzajlinii select r).SingleOrDefault();
+            bazaDanych.rodzajelinii.Remove(rodzaj);
+            bazaDanych.SaveChanges();
         }
-        
+
+
+        //private void DeleteRodzajeLinii(rodzajelinii rodzaje)
+        //{
+        //    //if (rodzaje != null)
+        //    //{
+        //        var rodzaj = (from r in bazaDanych.rodzajelinii.Local
+        //                       where r.numerlinii == rodzaje.numerlinii
+        //                       select r).FirstOrDefault();
+
+        //        foreach (var item in rodzaj.relacje.ToList())
+        //        {
+        //            bazaDanych.relacje.Remove(item);
+        //        }
+
+        //        bazaDanych.rodzajelinii.Remove(rodzaj);
+        //        bazaDanych.SaveChanges();
+
+        //        rodzajeliniiViewSource.View.Refresh();
+        //    //}
+
+        //}
+
+        //private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    rodzajelinii rodz = e.Parameter as rodzajelinii;
+        //    DeleteRodzajeLinii(rodz);
+        //}
+
     }
 }

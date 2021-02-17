@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,8 +24,6 @@ namespace crudapp
     public partial class WszystkieLinie : Window
     {
         readonly RozkladJazdyKMEntities1 dataEntities = new RozkladJazdyKMEntities1();
-
-
         public WszystkieLinie()
         {
             InitializeComponent();
@@ -75,7 +74,7 @@ namespace crudapp
 
         private void BtnDodajLinie_Click(object sender, RoutedEventArgs e)
         {
-            DodajLinie dL = new DodajLinie(this);
+            DodajLinie dL = new DodajLinie();
             dL.Show();
         }
 
@@ -97,39 +96,6 @@ namespace crudapp
             this.Close();
         }
 
-        private void UsunButton_Click(object sender, RoutedEventArgs e)
-        {
-            //var selectedItem = this.relacjeDataGrid.SelectedItem;
-            //if (selectedItem != null)
-            //{
-            //    relacjeDataGrid.Items.Remove(selectedItem);
-            //}
-
-            
-        }
-        private void Usun()
-        {
-
-            throw new NotImplementedException();
-            //if (relacje != null)
-            //{
-            //    var relacja = (from r in dataEntities.relacje
-            //                   where r.idrelacji == relacje.idrelacji
-            //                   select r).FirstOrDefault();
-
-            //    foreach (var item in relacja.przejazdy)
-            //    {
-            //        dataEntities.przejazdy.Remove(item);
-            //    }
-
-
-            //    dataEntities.relacje.Remove(relacja);
-            //    dataEntities.SaveChanges();
-
-            //    relacjeViewSource.View.Refresh();
-            //}
-
-        }
 
     }
 }

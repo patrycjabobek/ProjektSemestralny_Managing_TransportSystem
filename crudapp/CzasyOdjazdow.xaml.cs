@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +22,7 @@ namespace crudapp
     public partial class CzasyOdjazdow : Window
     {
         RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        System.Windows.Data.CollectionViewSource czasyodjazdowViewSource;
         public CzasyOdjazdow()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace crudapp
             // Load data into the table czasyodjazdow. You can modify this code as needed.
             crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.czasyodjazdowTableAdapter rozkladJazdyKMDataSetczasyodjazdowTableAdapter = new crudapp.BazaDanych.RozkladJazdyKMDataSetTableAdapters.czasyodjazdowTableAdapter();
             rozkladJazdyKMDataSetczasyodjazdowTableAdapter.Fill(rozkladJazdyKMDataSet.czasyodjazdow);
-            System.Windows.Data.CollectionViewSource czasyodjazdowViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("czasyodjazdowViewSource")));
+            czasyodjazdowViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("czasyodjazdowViewSource")));
             czasyodjazdowViewSource.View.MoveCurrentToFirst();
 
             var query =
@@ -59,7 +61,7 @@ namespace crudapp
                 {
                     idprzejazdu = (short)Convert.ToInt16(idprzejazduTextBox.Text),
                     dni = (short)Convert.ToInt16(dniTextBox.Text),
-                    idczasu = (short)Convert.ToInt16(idczasuTextBox.Text),
+                    idczasu = (int)Convert.ToInt32(idczasuTextBox.Text),
                     czas = TimeSpan.Parse(czasTextBox.Text)
                 };
 
@@ -87,9 +89,33 @@ namespace crudapp
             this.Close();
         }
 
-        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
+        private void DeleteCzas(czasyodjazdow czasy)
+        {
+            //if (dni != null)
+            //{
+            var czas = (from c in bazaDanych.czasyodjazdow.Local
+                         where c.idczasu == czasy.idczasu
+                         select c).FirstOrDefault();
+
+
+            bazaDanych.czasyodjazdow.Remove(czas);
+            bazaDanych.SaveChanges();
+
+            czasyodjazdowViewSource.View.Refresh();
+            //}
+
+        }
+
+        private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            czasyodjazdow co = e.Parameter as czasyodjazdow;
+            DeleteCzas(co);
         }
     }
 }
