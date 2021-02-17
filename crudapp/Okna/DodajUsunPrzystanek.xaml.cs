@@ -18,11 +18,17 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for DodajPrzystanek.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli przystanki oraz
+    /// za dodanie i usunięcie przystanku
     /// </summary>
     public partial class DodajPrzystanek : Window
     {
         RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
         System.Windows.Data.CollectionViewSource przystankiViewSource;
+
+        /// <summary>
+        /// Konstruktor klasy DodajPrzystanek
+        /// </summary>
         public DodajPrzystanek()
         {
             InitializeComponent();
@@ -84,6 +90,16 @@ namespace crudapp
             nazwaTextBox.Text = String.Empty;
 
             this.Close();
+        }
+
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            int przystanekID = (przystankiDataGrid.SelectedItem as przystanki).idprzystanku;
+            przystanki przystanek = bazaDanych.przystanki.Where(p => p.idprzystanku == przystanekID).Single();
+            bazaDanych.przystanki.Remove(przystanek);
+            bazaDanych.SaveChanges();
+
+            this.przystankiDataGrid.ItemsSource = bazaDanych.przystanki.ToList();
         }
 
         private void DeletePrzystanek(przystanki przystanki)

@@ -21,11 +21,17 @@ namespace crudapp
 
     /// <summary>
     /// Interaction logic for DodajLinie.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli relacje oraz
+    /// za dodanie i usunięcie relacji (linii)
     /// </summary>
     public partial class DodajLinie : Window
     {
         readonly RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
         System.Windows.Data.CollectionViewSource relacjeViewSource;
+
+        /// <summary>
+        /// Konstruktor klasy DodajLinie
+        /// </summary>
         public DodajLinie()
         {
             InitializeComponent();
@@ -100,6 +106,16 @@ namespace crudapp
             this.Close();
         }
 
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            int relacjaID = (relacjeDataGrid.SelectedItem as relacje).idrelacji;
+            relacje relacja = bazaDanych.relacje.Where(r => r.idrelacji == relacjaID).Single();
+            bazaDanych.relacje.Remove(relacja);
+            bazaDanych.SaveChanges();
+
+            this.relacjeDataGrid.ItemsSource = bazaDanych.relacje.ToList();
+
+        }
 
         private void DeleteRelacje(relacje relacje)
         {

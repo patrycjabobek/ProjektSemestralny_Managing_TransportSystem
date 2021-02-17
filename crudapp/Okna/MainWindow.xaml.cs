@@ -19,10 +19,15 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// Klasa odpowiada za wyświetlenie przycisków, dzięki którym
+    /// można wyświetlić w nowym oknie informacje o danej linii
+    /// oraz za wyświetlanie dalszych okien aplikacji
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        /// <summary>
+        /// Konstruktor klasy MainWindow
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();

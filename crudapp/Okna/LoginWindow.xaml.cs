@@ -18,9 +18,13 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
+    /// Klasa odpowiada za logowanie się do aplikacji
     /// </summary>
     public partial class LoginWindow : Window
     {
+        /// <summary>
+        /// Konstruktor klasy LoginWindow
+        /// </summary>
         public LoginWindow()
         {
             InitializeComponent();
@@ -36,8 +40,10 @@ namespace crudapp
                     sqlCon.Open();
                     
                     String query = "SELECT COUNT(1) FROM Uzytkownik WHERE NazwaUzytkownika=@NazwaUzytkownika AND Haslo=@Haslo";
-                    SqlCommand command = new SqlCommand(query, sqlCon);
-                    command.CommandType = CommandType.Text;
+                    SqlCommand command = new SqlCommand(query, sqlCon)
+                    {
+                        CommandType = CommandType.Text
+                    };
                     command.Parameters.AddWithValue("@NazwaUzytkownika", NazwaUzytkownika_Box.Text);
                     command.Parameters.AddWithValue("@Haslo", Haslo_PasswordBox.Password);
                     int count = Convert.ToInt32(command.ExecuteScalar());

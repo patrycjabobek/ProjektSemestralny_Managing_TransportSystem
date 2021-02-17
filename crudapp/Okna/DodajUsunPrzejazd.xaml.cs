@@ -18,11 +18,17 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for DodajPrzejazd.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli przejazdy oraz
+    /// za dodanie i usunięcie przejazdu
     /// </summary>
     public partial class DodajPrzejazd : Window
     {
         readonly RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
         System.Windows.Data.CollectionViewSource przejazdyViewSource;
+
+        /// <summary>
+        /// Konstruktory klasy DodajPrzejazd
+        /// </summary>
         public DodajPrzejazd()
         {
             InitializeComponent();
@@ -86,7 +92,15 @@ namespace crudapp
 
             this.Close();
         }
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            int przejazdID = (przejazdyDataGrid.SelectedItem as przejazdy).idprzejazdu;
+            przejazdy przejazd = bazaDanych.przejazdy.Where(p => p.idprzejazdu == przejazdID).Single();
+            bazaDanych.przejazdy.Remove(przejazd);
+            bazaDanych.SaveChanges();
 
+            this.przejazdyDataGrid.ItemsSource = bazaDanych.przejazdy.ToList();
+        }
         private void DeletePrzejazd(przejazdy prz)
         {
             //if (dni != null)

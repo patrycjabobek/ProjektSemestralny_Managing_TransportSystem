@@ -18,6 +18,8 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for CzasyOdjazdow.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli czasyodjazdow oraz
+    /// za dodanie i usunięcie czasu odjazdów
     /// </summary>
     public partial class CzasyOdjazdow : Window
     {
@@ -56,7 +58,6 @@ namespace crudapp
             }
             else
             {
-
                 czasyodjazdow nowyOdjazd = new czasyodjazdow()
                 {
                     idprzejazdu = (short)Convert.ToInt16(idprzejazduTextBox.Text),
@@ -74,7 +75,6 @@ namespace crudapp
                 dniTextBox.Text = String.Empty;
                 idczasuTextBox.Text = String.Empty;
                 czasTextBox.Text = String.Empty; 
-
             }
 
         }
@@ -93,6 +93,17 @@ namespace crudapp
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            int czasID = (czasyodjazdowDataGrid.SelectedItem as czasyodjazdow).idczasu;
+            czasyodjazdow czas = bazaDanych.czasyodjazdow.Where(c => c.idczasu == czasID).Single();
+            bazaDanych.czasyodjazdow.Remove(czas);
+            bazaDanych.SaveChanges();
+
+            this.czasyodjazdowDataGrid.ItemsSource = bazaDanych.czasyodjazdow.ToList();
+
         }
 
         private void DeleteCzas(czasyodjazdow czasy)

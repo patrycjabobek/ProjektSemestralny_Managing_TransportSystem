@@ -20,10 +20,16 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for WszystkieLinie.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli roelacje, przejazdy,
+    /// przystanki oraz za wyświetlenie przycisków
     /// </summary>
     public partial class WszystkieLinie : Window
     {
         readonly RozkladJazdyKMEntities1 dataEntities = new RozkladJazdyKMEntities1();
+
+        /// <summary>
+        /// Konstruktor klasy WszystkieLinie
+        /// </summary>
         public WszystkieLinie()
         {
             InitializeComponent();

@@ -1,6 +1,7 @@
 ﻿using crudapp.BazaDanych;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -18,11 +19,17 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for RodzajeLinii.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli rodzajelinii oraz
+    /// za dodanie i usunięcie rodzaju linii
     /// </summary>
     public partial class RodzajeLinii : Window
     {
-        RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
+        readonly RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
         System.Windows.Data.CollectionViewSource rodzajeliniiViewSource;
+
+        /// <summary>
+        /// Konstruktor klasy RodzajeLinii
+        /// </summary>
         public RodzajeLinii()
         {
             InitializeComponent();
@@ -87,12 +94,15 @@ namespace crudapp
 
         private void DeleteRow_Click(object sender, RoutedEventArgs e)
         {
+
             int rodzajlinii = (rodzajeliniiDataGrid.SelectedItem as rodzajelinii).numerlinii;
-            rodzajelinii rodzaj = (from r in bazaDanych.rodzajelinii where r.numerlinii == rodzajlinii select r).SingleOrDefault();
+            rodzajelinii rodzaj = bazaDanych.rodzajelinii.Where(r => r.numerlinii == rodzajlinii).Single();
             bazaDanych.rodzajelinii.Remove(rodzaj);
             bazaDanych.SaveChanges();
-        }
 
+            this.rodzajeliniiDataGrid.ItemsSource = bazaDanych.rodzajelinii.ToList();
+           
+        }
 
         //private void DeleteRodzajeLinii(rodzajelinii rodzaje)
         //{

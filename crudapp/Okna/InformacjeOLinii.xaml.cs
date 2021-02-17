@@ -19,6 +19,8 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for InformacjeOLinii.xaml
+    /// Klasa odpowiada za wyświetlenie w textboxach danych z tabeli relacje
+    /// dotyczących aktualnie wybranej linii
     /// </summary>
     public partial class InformacjeOLinii : Window
     {
@@ -26,6 +28,11 @@ namespace crudapp
         RozkladJazdyKMDataSet dataset = new RozkladJazdyKMDataSet();
 
         private string numerLinii;
+
+        /// <summary>
+        /// Konstruktor klasy InformacjeOLinie z jednym parametrem
+        /// </summary>
+        /// <param name="numerLinii"></param>
         public InformacjeOLinii(string numerLinii)
         {
             InitializeComponent();
@@ -71,20 +78,16 @@ namespace crudapp
             
         }
 
-
         private void FillTextBoxesWithData(string numer)
         {
             titleTextBox.Text = numer;
 
             SqlConnection con1 = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RozkladJazdyKM;Integrated Security=True");
-            DataTable dt = new DataTable();
+            _ = new DataTable();
             con1.Open();
-            SqlDataReader myReader = null;
             SqlCommand myCommand = new SqlCommand("select * from relacje where idrelacji='" + numer + "'", con1);
 
-
-
-            myReader = myCommand.ExecuteReader();
+            SqlDataReader myReader = myCommand.ExecuteReader();
 
             while (myReader.Read())
             {
@@ -94,39 +97,7 @@ namespace crudapp
                 numerliniiTextBox.Text = (myReader["numerLinii"].ToString());
                 
             }
-            con1.Close();
-            //DataTable dtRelacje = dataset.relacje;
-            //DataTable dtDni = dataset.dni;
-            //DataTable dtRodzajeLini = dataset.rodzajelinii;
-            //
-
-            //string idRelacji;
-            //idRelacji = $"idrelacji={Convert.ToUInt16(numer)}";
-            //DataRow drRelacje;
-            //drRelacje = dtRelacje.Rows.Find(idRelacji);
-
-            //idrelacjiTextBox1.Text = drRelacje["idrelacji"].ToString();
-            //idostatniegoprzystankuTextBox.Text = drRelacje["idostatniegoprzystanku"].ToString();
-            //idpierwszegoprzystankuTextBox.Text = drRelacje["idpierwszegoprzystanku"].ToString();
-            //numerliniiTextBox.Text = drRelacje["numerLinii"].ToString();
-
-
-            //string idDni;
-            //idDni = $"idDni={Convert.ToUInt16(numer)}";
-            //DataRow[] drDni = dtDni.Select(idDni);
-            //foreach (DataRow row in drDni)
-            //{
-            //    czynocnyCheckBox.IsChecked = (bool?)row["czynocny"];
-            //    tydzienTextBox.Text = row["tydzien"].ToString();
-            //}
-
-            //string idRodzaju;
-            //idRodzaju = $"numerlinii={Convert.ToUInt16(numer)}";
-            //DataRow[] drNazwa = dtRodzajeLini.Select(idRodzaju);
-            //foreach (DataRow row in drNazwa)
-            //{
-            //    nazwaTextBox.Text = row["nazwa"].ToString();
-            //}
+            con1.Close();   
         }
     }
 }

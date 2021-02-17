@@ -41,7 +41,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Usuń" Command="{StaticResource DeleteCommand}" CommandParameter="{Binding}" Width="80"/>
+                                <Button Content="Usuń" Click="DeleteRow_Click" Command="{StaticResource DeleteCommand}" CommandParameter="{Binding}" Width="80"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

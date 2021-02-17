@@ -18,11 +18,17 @@ namespace crudapp
 {
     /// <summary>
     /// Interaction logic for Dni.xaml
+    /// Klasa odpowiada za wyświetlenie tabeli dni oraz
+    /// za dodanie i usunięcie dni odjazdów transpotku publicznego
     /// </summary>
     public partial class Dni : Window
     {
         RozkladJazdyKMEntities1 bazaDanych = new RozkladJazdyKMEntities1();
         System.Windows.Data.CollectionViewSource dniViewSource;
+
+        /// <summary>
+        /// Konstruktor klasy Dni
+        /// </summary>
         public Dni()
         {
             InitializeComponent();
@@ -87,6 +93,15 @@ namespace crudapp
 
             this.Close();
         }
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            int dzienID = (dniDataGrid.SelectedItem as dni).idDni;
+            dni dzien = bazaDanych.dni.Where(d => d.idDni == dzienID).Single();
+            bazaDanych.dni.Remove(dzien);
+            bazaDanych.SaveChanges();
+
+            this.dniDataGrid.ItemsSource = bazaDanych.dni.ToList();
+        }
 
         private void DeleteDzien(dni dni)
         {
@@ -106,7 +121,6 @@ namespace crudapp
 
             dniViewSource.View.Refresh();
             //}
-
         }
 
         private void DeleteCommandHandler(object sender, ExecutedRoutedEventArgs e)

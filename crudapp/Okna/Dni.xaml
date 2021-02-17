@@ -29,7 +29,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Usuń" Command="{StaticResource DeleteCommand}" CommandParameter="{Binding}" Width="80"/>
+                                <Button Content="Usuń" Click="DeleteRow_Click" Command="{StaticResource DeleteCommand}" CommandParameter="{Binding}" Width="80"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -50,7 +50,7 @@
                 <Label Content="tydzien:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <TextBox x:Name="tydzienTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding tydzien, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Label Content="czynocny:" Foreground="White" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                <CheckBox x:Name="czynocnyCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding czynocny, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                <CheckBox x:Name="czynocnyCheckBox" Content="" IsHitTestVisible="False" Focusable="False" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding czynocny, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
         

@@ -93,25 +93,25 @@
     <Compile Include="BazaDanych\dni.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="CzasyOdjazdow.xaml.cs">
+    <Compile Include="Okna\CzasyOdjazdow.xaml.cs">
       <DependentUpon>CzasyOdjazdow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dni.xaml.cs">
+    <Compile Include="Okna\Dni.xaml.cs">
       <DependentUpon>Dni.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DodajUsunLinie.xaml.cs">
+    <Compile Include="Okna\DodajUsunLinie.xaml.cs">
       <DependentUpon>DodajUsunLinie.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DodajUsunPrzejazd.xaml.cs">
+    <Compile Include="Okna\DodajUsunPrzejazd.xaml.cs">
       <DependentUpon>DodajUsunPrzejazd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DodajUsunPrzystanek.xaml.cs">
+    <Compile Include="Okna\DodajUsunPrzystanek.xaml.cs">
       <DependentUpon>DodajUsunPrzystanek.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InformacjeOLinii.xaml.cs">
+    <Compile Include="Okna\InformacjeOLinii.xaml.cs">
       <DependentUpon>InformacjeOLinii.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="Okna\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="BazaDanych\RozkladJazdyKMDataSet.Designer.cs">
@@ -149,41 +149,41 @@
     <Compile Include="BazaDanych\Uzytkownik.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="RodzajeLinii.xaml.cs">
+    <Compile Include="Okna\RodzajeLinii.xaml.cs">
       <DependentUpon>RodzajeLinii.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WszystkieLinie.xaml.cs">
+    <Compile Include="Okna\WszystkieLinie.xaml.cs">
       <DependentUpon>WszystkieLinie.xaml</DependentUpon>
     </Compile>
-    <Page Include="CzasyOdjazdow.xaml">
+    <Page Include="Okna\CzasyOdjazdow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dni.xaml">
+    <Page Include="Okna\Dni.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DodajUsunLinie.xaml">
+    <Page Include="Okna\DodajUsunLinie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DodajUsunPrzejazd.xaml">
+    <Page Include="Okna\DodajUsunPrzejazd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DodajUsunPrzystanek.xaml">
+    <Page Include="Okna\DodajUsunPrzystanek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InformacjeOLinii.xaml">
+    <Page Include="Okna\InformacjeOLinii.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Okna\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Okna\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -191,15 +191,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Okna\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RodzajeLinii.xaml">
+    <Page Include="Okna\RodzajeLinii.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WszystkieLinie.xaml">
+    <Page Include="Okna\WszystkieLinie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
